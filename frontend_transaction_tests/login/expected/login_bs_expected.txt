@@ -1,0 +1,3 @@
+Enter username:
+Login successful, welcome buystduser1 (buy-standard).
+Logout successful.

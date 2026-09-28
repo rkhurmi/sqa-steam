@@ -1,0 +1,3 @@
+login
+admuser1
+logout

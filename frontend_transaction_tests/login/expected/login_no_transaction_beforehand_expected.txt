@@ -1,0 +1,7 @@
+ERROR: You must log in first.
+ERROR: You must log in first.
+ERROR: You must log in first.
+ERROR: You must log in first.
+Enter username:
+Login successful, welcome, admuser1 (admin).
+Logout successful.

@@ -1,0 +1,4 @@
+Enter username:
+Login successful, welcome, admuser1 (admin).
+ERROR: Already logged in, log out first.
+Logout successful.
