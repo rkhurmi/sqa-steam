@@ -1,0 +1,6 @@
+Enter username:
+Login successful, welcome admuser1 (admin).
+game01 30.0
+game02 20.0
+game03 10.0
+Logout successful.

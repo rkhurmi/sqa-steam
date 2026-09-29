@@ -1,0 +1,4 @@
+login
+admuser1
+list
+logout
