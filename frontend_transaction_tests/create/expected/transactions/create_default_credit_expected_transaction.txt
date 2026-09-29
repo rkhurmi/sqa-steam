@@ -1,0 +1,2 @@
+01 newuser02       BS 000000.00
+00 admuser1        AA 000000.00

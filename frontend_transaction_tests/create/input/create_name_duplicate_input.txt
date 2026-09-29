@@ -1,0 +1,5 @@
+login
+admuser1
+create
+fullstduser1
+logout

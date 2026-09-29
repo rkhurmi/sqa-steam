@@ -1,0 +1,4 @@
+login
+fullstduser1
+create
+logout

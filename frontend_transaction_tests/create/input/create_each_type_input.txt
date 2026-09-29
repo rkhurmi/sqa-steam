@@ -1,0 +1,15 @@
+login
+admuser1
+create
+newadmin01
+admin
+create
+newfullstd01
+full-standard
+create
+newbuystd01
+buy-standard
+create
+newsellstd01
+sell-standard
+logout
