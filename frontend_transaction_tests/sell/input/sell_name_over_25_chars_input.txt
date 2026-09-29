@@ -1,5 +1,0 @@
-login
-admuser1
-sell
-This Game Name Is Too Long
-logout
