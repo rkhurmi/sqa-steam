@@ -1,0 +1,7 @@
+sell
+buy
+create
+logout
+login
+admuser1
+logout

@@ -1,0 +1,12 @@
+Enter username:
+Login successful, welcome admuser1 (admin).
+Enter new username:
+Enter user type (admin, full-standard, buy-standard, sell-standard):
+User newuser21 created.
+Enter username to delete:
+User fullstd02 deleted.
+Enter buyer username:
+Enter seller username:
+Enter refund amount:
+Refunded $10.00 from sellstduser1 to buystduser1.
+Logout successful.

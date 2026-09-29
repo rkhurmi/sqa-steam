@@ -1,0 +1,3 @@
+Enter username:
+Login successful, welcome sellstduser1 (sell-standard).
+Logout successful.

@@ -1,0 +1,3 @@
+login
+fullstduser1
+logout

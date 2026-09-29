@@ -1,0 +1,7 @@
+Enter username:
+Login successful, welcome admuser1 (admin).
+Enter new username:
+ERROR: Username must be between 1 and 15 characters.
+Enter new username:
+ERROR: Username must be between 1 and 15 characters.
+Logout successful.

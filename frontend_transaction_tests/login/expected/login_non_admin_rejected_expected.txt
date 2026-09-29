@@ -1,0 +1,6 @@
+Enter username:
+Login successful, welcome fullstduser1 (full-standard).
+ERROR: Permission denied, create requires admin privileges.
+ERROR: Permission denied, delete requires admin privileges.
+ERROR: Permission denied, refund requires admin privileges.
+Logout successful.

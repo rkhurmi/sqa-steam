@@ -1,0 +1,12 @@
+login
+admuser1
+create
+newuser21
+full-standard
+delete
+fullstd02
+refund
+buystduser1
+sellstduser1
+10.00
+logout

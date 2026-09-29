@@ -1,0 +1,6 @@
+Enter username:
+Login successful, welcome admuser1 (admin).
+Enter new username:
+Enter user type (admin, full-standard, buy-standard, sell-standard):
+User newuser01 created.
+Logout successful.

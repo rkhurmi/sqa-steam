@@ -1,0 +1,8 @@
+Enter username:
+Login successful, welcome admuser1 (admin).
+Enter username to delete:
+User sellstduser1 deleted.
+Enter game name:
+Enter seller username:
+ERROR: Seller not found.
+Logout successful.

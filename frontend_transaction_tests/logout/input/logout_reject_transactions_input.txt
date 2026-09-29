@@ -1,0 +1,10 @@
+login
+admuser1
+logout
+create
+delete
+sell
+buy
+refund
+addcredit
+list

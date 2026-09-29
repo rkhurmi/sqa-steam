@@ -1,0 +1,5 @@
+Enter username:
+Login successful, welcome admuser1 (admin).
+Enter username to delete:
+ERROR: You cannot delete the currently logged-in user.
+Logout successful.

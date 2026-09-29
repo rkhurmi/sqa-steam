@@ -1,0 +1,4 @@
+03 game01              admuser1      030.00 
+03 game02              admuser1      020.00
+03 game03              admuser1      010.00  
+00 admuser1        AA 000000.00

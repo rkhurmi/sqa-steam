@@ -1,0 +1,8 @@
+login
+admuser1
+delete
+sellstduser1
+buy
+Stardew Valley
+sellstduser1
+logout
