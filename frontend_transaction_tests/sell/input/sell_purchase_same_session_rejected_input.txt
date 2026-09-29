@@ -1,0 +1,9 @@
+login
+admuser1
+sell
+Same Session Game
+50.00
+buy
+Same Session Game
+admuser1
+logout

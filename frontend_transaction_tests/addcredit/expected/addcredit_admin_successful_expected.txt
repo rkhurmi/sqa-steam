@@ -1,0 +1,6 @@
+Enter username:
+Login successful, welcome admuser1 (admin).
+Enter amount to add:
+Enter username to credit:
+Added $50.00 credit to fullstduser1.
+Logout successful.

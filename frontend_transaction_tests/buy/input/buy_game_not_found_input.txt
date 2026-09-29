@@ -1,0 +1,8 @@
+login
+fullstduser1
+addcredit
+20.00
+buy
+Nonexistent Game
+sellstduser1
+logout

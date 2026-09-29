@@ -1,0 +1,11 @@
+login
+fullstduser1
+addcredit
+40.00
+buy
+Stardew Valley
+sellstduser1
+buy
+Stardew Valley
+sellstduser1
+logout

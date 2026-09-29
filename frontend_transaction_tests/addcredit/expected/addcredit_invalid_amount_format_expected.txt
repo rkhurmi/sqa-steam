@@ -1,0 +1,5 @@
+Enter username:
+Login successful, welcome buystduser1 (buy-standard).
+Enter amount to add:
+ERROR: Invalid amount format.
+Logout successful.

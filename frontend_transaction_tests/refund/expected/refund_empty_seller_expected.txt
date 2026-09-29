@@ -1,0 +1,6 @@
+Enter username:
+Login successful, welcome admuser1 (admin).
+Enter buyer username:
+Enter seller username:
+ERROR: Seller username cannot be blank.
+Logout successful.

@@ -1,0 +1,4 @@
+Enter username:
+Login successful, welcome sellstduser1 (sell-standard).
+ERROR: Permission denied, sell-standard accounts cannot buy games.
+Logout successful.

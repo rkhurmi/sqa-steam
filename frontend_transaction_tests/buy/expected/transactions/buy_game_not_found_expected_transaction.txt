@@ -1,0 +1,2 @@
+06 fullstduser1    FS 000020.00
+00 fullstduser1    FS 000020.00

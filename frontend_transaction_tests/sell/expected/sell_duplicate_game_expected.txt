@@ -1,0 +1,5 @@
+Enter username:
+Login successful, welcome admuser1 (admin).
+Enter game name:
+ERROR: Game name already exists.
+Logout successful.

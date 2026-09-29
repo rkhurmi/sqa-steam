@@ -1,0 +1,6 @@
+login
+admuser1
+sell
+Stardew Valley
+20.00
+logout

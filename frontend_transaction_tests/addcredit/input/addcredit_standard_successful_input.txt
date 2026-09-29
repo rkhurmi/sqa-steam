@@ -1,0 +1,5 @@
+login
+buystduser1
+addcredit
+25.00
+logout

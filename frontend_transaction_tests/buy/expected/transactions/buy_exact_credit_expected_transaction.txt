@@ -1,0 +1,3 @@
+06 buystduser1     BS 000015.00
+04 Stardew Valley      sellstduser1    buystduser1     015.00
+00 buystduser1     BS 000000.00

@@ -1,0 +1,7 @@
+Enter username:
+Login successful, welcome admuser1 (admin).
+Enter buyer username:
+Enter seller username:
+Enter refund amount:
+Refunded $10.00 from sellstduser1 to buystduser1.
+Logout successful.

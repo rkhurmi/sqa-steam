@@ -1,0 +1,6 @@
+Enter username:
+Login successful, welcome admuser1 (admin).
+Enter amount to add:
+Enter username to credit:
+ERROR: Username not found.
+Logout successful.

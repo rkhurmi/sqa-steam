@@ -1,0 +1,3 @@
+06 admuser1        AA 000020.00
+04 Stardew Valley      sellstduser1    admuser1        015.00
+00 admuser1        AA 000005.00
