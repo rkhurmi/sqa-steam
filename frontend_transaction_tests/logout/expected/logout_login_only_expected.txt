@@ -1,0 +1,6 @@
+Enter username:
+Login successful, welcome admuser1 (admin).
+Logout successful.
+Enter username:
+Login successful, welcome fullstduser1 (full-standard).
+Logout successful.
