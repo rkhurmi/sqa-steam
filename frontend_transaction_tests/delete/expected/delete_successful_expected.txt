@@ -1,0 +1,5 @@
+Enter username:
+Login successful, welcome admuser1 (admin).
+Enter username to delete:
+User fullstduser1 deleted.
+Logout successful.

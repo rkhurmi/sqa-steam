@@ -1,0 +1,4 @@
+Enter username:
+Login successful, welcome fullstduser1 (full-standard).
+ERROR: Permission denied, delete requires admin privileges.
+Logout successful.
