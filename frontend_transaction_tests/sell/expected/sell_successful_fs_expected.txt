@@ -1,0 +1,6 @@
+Enter username:
+Login successful, welcome fullstduser1 (full-standard).
+Enter game name:
+Enter price:
+Listed Stardew Valley for sale at $10.00.
+Logout successful.

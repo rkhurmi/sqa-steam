@@ -1,0 +1,7 @@
+Enter username:
+Login successful, welcome admuser1 (admin).
+Enter buyer username:
+Enter seller username:
+Enter refund amount:
+ERROR: Invalid amount format.
+Logout successful.

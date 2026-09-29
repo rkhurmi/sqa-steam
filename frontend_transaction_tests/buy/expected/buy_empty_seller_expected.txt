@@ -1,0 +1,6 @@
+Enter username:
+Login successful, welcome fullstduser1 (full-standard).
+Enter game name:
+Enter seller username:
+ERROR: Seller username cannot be blank.
+Logout successful.

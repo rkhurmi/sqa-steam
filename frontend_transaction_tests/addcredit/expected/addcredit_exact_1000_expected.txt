@@ -1,0 +1,5 @@
+Enter username:
+Login successful, welcome buystduser1 (buy-standard).
+Enter amount to add:
+Added $1000.00 credit to buystduser1.
+Logout successful.

@@ -1,0 +1,9 @@
+Enter username:
+Login successful, welcome admuser1 (admin).
+Enter game name:
+Enter price:
+Listed Same Session Game for sale at $50.00.
+Enter game name:
+Enter seller username:
+ERROR: Game not found.
+Logout successful.

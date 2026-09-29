@@ -1,0 +1,5 @@
+login
+buystduser1
+addcredit
+abc
+logout

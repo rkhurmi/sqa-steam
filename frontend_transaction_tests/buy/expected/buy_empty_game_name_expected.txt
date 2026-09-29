@@ -1,0 +1,5 @@
+Enter username:
+Login successful, welcome fullstduser1 (full-standard).
+Enter game name:
+ERROR: Game name cannot be blank.
+Logout successful.

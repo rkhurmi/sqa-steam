@@ -1,0 +1,2 @@
+06 fullstduser1    FS 000050.00
+00 admuser1        AA 000000.00

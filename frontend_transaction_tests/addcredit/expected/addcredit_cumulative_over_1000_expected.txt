@@ -1,0 +1,7 @@
+Enter username:
+Login successful, welcome buystduser1 (buy-standard).
+Enter amount to add:
+Added $600.00 credit to buystduser1.
+Enter amount to add:
+ERROR: Cannot add more than $1000.00 in credit per session.
+Logout successful.

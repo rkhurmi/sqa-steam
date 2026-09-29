@@ -1,0 +1,6 @@
+Enter username:
+Login successful, welcome admuser1 (admin).
+Enter game name:
+Enter price:
+ERROR: Invalid price format.
+Logout successful.

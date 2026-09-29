@@ -1,0 +1,5 @@
+login
+admuser1
+sell
+
+logout

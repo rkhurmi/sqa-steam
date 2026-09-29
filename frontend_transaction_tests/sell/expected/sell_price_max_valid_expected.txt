@@ -1,0 +1,6 @@
+Enter username:
+Login successful, welcome admuser1 (admin).
+Enter game name:
+Enter price:
+Listed Exactly 25 Char Game Name for sale at $999.99.
+Logout successful.

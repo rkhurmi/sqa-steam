@@ -1,0 +1,9 @@
+Enter username:
+Login successful, welcome admuser1 (admin).
+Enter amount to add:
+Enter username to credit:
+Added $20.00 credit to admuser1.
+Enter game name:
+Enter seller username:
+Purchased Stardew Valley from sellstduser1 for $15.00.
+Logout successful.

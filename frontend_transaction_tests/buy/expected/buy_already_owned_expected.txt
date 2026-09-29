@@ -1,0 +1,11 @@
+Enter username:
+Login successful, welcome fullstduser1 (full-standard).
+Enter amount to add:
+Added $40.00 credit to fullstduser1.
+Enter game name:
+Enter seller username:
+Purchased Stardew Valley from sellstduser1 for $15.00.
+Enter game name:
+Enter seller username:
+ERROR: You already own this game.
+Logout successful.

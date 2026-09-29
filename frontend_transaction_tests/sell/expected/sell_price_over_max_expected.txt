@@ -1,0 +1,6 @@
+Enter username:
+Login successful, welcome admuser1 (admin).
+Enter game name:
+Enter price:
+ERROR: Price cannot exceed $999.99.
+Logout successful.
