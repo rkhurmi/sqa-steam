@@ -19,14 +19,6 @@ void Session::login(const std::string& user, const std::string& pw) {
     logged_in = true;
 }
 
-void Session::process_transactions() {
-    if (!logged_in) {
-        std::cout << "Error: no user is logged in.\n";
-        return;
-    }
-    std::cout << "Processing transactions for " << current_user.get_username() << "\n";
-}
-
 void Session::logout(const std::string& user) {
     if (!logged_in || current_user.get_username() != user) {
         std::cout << "Error: user is not logged in.\n";

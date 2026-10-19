@@ -18,9 +18,6 @@ public:
     // Logs in the named user if they exist.
     void login(const std::string& user, const std::string& pw);
 
-    // Processes the commands of a logged-in session.
-    void process_transactions();
-
     // Ends the session for the named user and records the logout.
     void logout(const std::string& user);
 
