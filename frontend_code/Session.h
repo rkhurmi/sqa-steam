@@ -16,7 +16,7 @@ public:
     Session(Transaction_Writer& transaction, const std::vector<User>& all_users = {});
 
     // Logs in the named user if they exist.
-    void login(const std::string& user, const std::string& pw);
+    void login(const std::string& user);
 
     // Ends the session for the named user and records the logout.
     void logout(const std::string& user);

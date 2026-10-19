@@ -47,6 +47,15 @@ void Game_Transactions::sell(const std::string& user) {
     transaction.record_sell(user, game, price);
 }
 
+void Game_Transactions::list_games() const {
+    for (const auto& entry : games_for_sale) {
+        for (const Game& listed_game : entry.second) {
+            std::cout << listed_game.get_name() << " " << listed_game.get_seller() << " "
+                      << listed_game.get_price() << "\n";
+        }
+    }
+}
+
 void Game_Transactions::remove_seller_games(const std::string& user) {
     games_for_sale.erase(user);
 }

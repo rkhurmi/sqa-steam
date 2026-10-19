@@ -4,8 +4,7 @@
 Session::Session(Transaction_Writer& transaction, const std::vector<User>& all_users)
     : current_user(), all_users(all_users), transaction(transaction), logged_in(false) {}
 
-void Session::login(const std::string& user, const std::string& pw) {
-    (void)pw;
+void Session::login(const std::string& user) {
     if (logged_in) {
         std::cout << "Error: a user is already logged in.\n";
         return;

@@ -23,6 +23,9 @@ public:
     // Lets `user` put a game up for sale: prompts for the name and price.
     void sell(const std::string& user);
 
+    // Prints every game currently for sale with its seller and price.
+    void list_games() const;
+
     // Removes all games listed for sale by `user` (e.g. when the account is deleted).
     void remove_seller_games(const std::string& user);
 
