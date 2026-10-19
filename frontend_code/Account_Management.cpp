@@ -36,3 +36,13 @@ void Account_Management::delete_user(const std::string& user) {
     }
     std::cout << "Error: user not found.\n";
 }
+
+void Account_Management::list_accounts() {
+    if (!session.is_logged_in() || session.get_current_user().get_user_type() != "AA") {
+        std::cout << "Error: admin privileges required.\n";
+        return;
+    }
+    for (const User& account : session.get_all_users()) {
+        std::cout << account.get_username() << " " << account.get_user_type() << " " << account.get_total_credit() << "\n";
+    }
+}

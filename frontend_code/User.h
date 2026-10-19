@@ -18,7 +18,7 @@ public:
          double total_credit = 0.0, double credit_in_session = 0.0);
 
     // Returns true if this user owns a game with the given name.
-    bool owns_game(const std::string& user) const;
+    bool owns_game(const std::string& game) const;
 
     // Adds a game with the given name to this user's collection.
     void add_game(const std::string& game);

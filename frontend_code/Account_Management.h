@@ -19,4 +19,7 @@ public:
 
     // Deletes a user account and records it.
     void delete_user(const std::string& user);
+
+    // Prints every active account and its type and credit (admin only).
+    void list_accounts();
 };

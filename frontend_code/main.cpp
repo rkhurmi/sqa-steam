@@ -3,9 +3,11 @@
  *
  * Intention:
  *   Runs one day of front-end activity for the game distribution system.
- *   A user logs in, performs transactions (create, delete, sell, buy,
- *   refund, addcredit), then logs out. Each accepted transaction is
- *   written to the daily transaction file for the back end to process.
+ *   A user logs in, performs transactions (create, delete, listaccounts,
+ *   sell, buy, refund, addcredit), then logs out. Each accepted
+ *   transaction is written to the daily transaction file for the back
+ *   end to process. listaccounts is admin-only and prints to the
+ *   terminal; it is not written to the transaction file.
  *
  * Input files (read once at start-up):
  *   - user accounts file:    username, user type, and credit of every account
@@ -57,6 +59,8 @@ void process_transactions(const std::string& command, const std::string& usernam
     } else if (command == "delete") {
         std::string delete_username = read_line("Username to delete: ");
         accounts.delete_user(delete_username);
+    } else if (command == "listaccounts") {
+        accounts.list_accounts();
     } else if (command == "sell") {
         games.sell(username);
     } else if (command == "buy") {

@@ -5,9 +5,9 @@ User::User(const std::string& username, const std::string& user_type,
     : username(username), user_type(user_type),
       total_credit(total_credit), credit_in_session(credit_in_session) {}
 
-bool User::owns_game(const std::string& user) const {
-    for (const Game& g : game_collection) {
-        if (g.get_name() == user) return true;
+bool User::owns_game(const std::string& game) const {
+    for (const Game& owned_game : game_collection) {
+        if (owned_game.get_name() == game) return true;
     }
     return false;
 }
