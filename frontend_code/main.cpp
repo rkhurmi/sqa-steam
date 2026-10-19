@@ -1,3 +1,31 @@
+/*
+ * Front End - command loop
+ *
+ * Intention:
+ *   Runs one day of front-end activity for the game distribution system.
+ *   A user logs in, performs transactions (create, delete, sell, buy,
+ *   refund, addcredit), then logs out. Each accepted transaction is
+ *   written to the daily transaction file for the back end to process.
+ *
+ * Input files (read once at start-up):
+ *   - user accounts file:    username, user type, and credit of every account
+ *   - available games file:  every game currently for sale, its seller, and price
+ *   - game collection file:  every game each user owns
+ *
+ * Output file:
+ *   - daily transaction file: one line per accepted transaction
+ *
+ * Standard input / output:
+ *   Commands and their fields are read from standard input, one line at
+ *   a time. Prompts, results, and error messages are printed to standard
+ *   output. The program stops when standard input runs out.
+ *
+ * How to run:
+ *   g++ -std=c++17 -o frontend *.cpp
+ *   ./frontend <user_accounts_file> <available_games_file> <game_collection_file> <daily_transaction_file>
+ */
+
+
 #include <iostream>
 #include <map>
 #include <string>
