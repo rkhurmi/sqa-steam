@@ -1,12 +1,12 @@
 #include <iostream>
-#include "Game.cpp"
-#include "User.cpp"
-#include "Session.cpp"
-#include "Readers.cpp"
-#include "Game_Transactions.cpp"
-#include "Transaction_Writer.cpp"
-#include "Account_Management.cpp"
-#include "Funds.cpp"
+#include "Game.h"
+#include "User.h"
+#include "Session.h"
+#include "Readers.h"
+#include "Game_Transactions.h"
+#include "Transaction_Writer.h"
+#include "Account_Management.h"
+#include "Funds.h"
 
 // Small demo wiring all classes around one shared Transaction_Writer.
 int main() {
