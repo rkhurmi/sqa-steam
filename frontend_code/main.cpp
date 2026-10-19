@@ -70,11 +70,11 @@ void process_transactions(const std::string& command, const std::string& usernam
     } else if (command == "addcredit") {
         funds.add_credit(username);
     } else if (command == "refund") {
-        std::string owner = read_line("Buyer username: ");
+        std::string buyer = read_line("Buyer username: ");
         std::string seller = read_line("Seller username: ");
         std::string amount_text = read_line("Refund amount: ");
         try {
-            funds.refund(owner, seller, std::stod(amount_text));
+            funds.refund(buyer, seller, std::stod(amount_text));
         } catch (...) {
             std::cout << "Error: invalid amount.\n";
         }
@@ -101,8 +101,8 @@ int main(int argc, char* argv[]) {
 
     Session session(writer, users);
     Account_Management accounts(session, writer);
-    Game_Transactions games(writer, readers.read_available_games());
-    Funds funds(writer);
+    Game_Transactions games(session, writer, readers.read_available_games());
+    Funds funds(session, writer);
 
     std::string command;
     while (std::getline(std::cin, command)) {

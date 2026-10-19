@@ -1,9 +1,9 @@
 #include "Game_Transactions.h"
 #include <iostream>
 
-Game_Transactions::Game_Transactions(Transaction_Writer& transaction,
+Game_Transactions::Game_Transactions(Session& session, Transaction_Writer& transaction,
                                      const std::map<std::string, std::vector<Game>>& games_for_sale)
-    : transaction(transaction), games_for_sale(games_for_sale) {}
+    : transaction(transaction), session(session), games_for_sale(games_for_sale) {}
 
 void Game_Transactions::buy(const std::string& user) {
     std::string game, seller;
@@ -21,7 +21,6 @@ void Game_Transactions::buy(const std::string& user) {
     for (size_t i = 0; i < list.size(); ++i) {
         if (list[i].get_name() == game) {
             transaction.record_buy(user, seller, game, list[i].get_price());
-            list.erase(list.begin() + static_cast<long>(i));
             return;
         }
     }

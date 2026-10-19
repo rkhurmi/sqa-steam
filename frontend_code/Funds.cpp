@@ -1,7 +1,8 @@
 #include "Funds.h"
 #include <iostream>
 
-Funds::Funds(Transaction_Writer& transaction) : transaction(transaction) {}
+Funds::Funds(Session& session, Transaction_Writer& transaction)
+    : transaction(transaction), session(session) {}
 
 void Funds::add_credit(const std::string& user) {
     std::string amount_text;
@@ -19,6 +20,6 @@ void Funds::add_credit(const std::string& user) {
     transaction.record_user_transaction("06", user, "", amount);
 }
 
-void Funds::refund(const std::string& owner, const std::string& seller, double credit) {
-    transaction.record_refund(owner, seller, credit);
+void Funds::refund(const std::string& buyer, const std::string& seller, double credit) {
+    transaction.record_refund(buyer, seller, credit);
 }

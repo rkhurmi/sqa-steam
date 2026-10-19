@@ -38,5 +38,6 @@ User Session::find_user(const std::string& user) {
 }
 
 bool Session::is_logged_in() const { return logged_in; }
+bool Session::is_admin() const { return logged_in && current_user.get_user_type() == "AA"; }
 User Session::get_current_user() const { return current_user; }
 std::vector<User>& Session::get_all_users() { return all_users; }

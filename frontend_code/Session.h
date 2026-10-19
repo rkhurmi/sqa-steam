@@ -26,6 +26,9 @@ public:
 
     // Accessors needed by Account_Management.
     bool is_logged_in() const;
+
+    // Returns true if a user is logged in and is an admin ("AA").
+    bool is_admin() const;
     User get_current_user() const;
     std::vector<User>& get_all_users();
 };

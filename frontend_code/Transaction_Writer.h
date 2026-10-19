@@ -25,13 +25,13 @@ public:
     void record_user_transaction(const std::string& code, const std::string& username,
                                  const std::string& user_type, double credit);
 
-    // Records a refund from a seller to a game owner.
-    void record_refund(const std::string& owner, const std::string& seller, double credit);
+    // Records a refund from a seller to a game buyer.
+    void record_refund(const std::string& buyer, const std::string& seller, double credit);
 
     // Records a game being put up for sale by its owner.
     void record_sell(const std::string& owner, const std::string& game, double credit);
 
     // Records a purchase of a game from a seller.
-    void record_buy(const std::string& owner, const std::string& seller,
+    void record_buy(const std::string& buyer, const std::string& seller,
                     const std::string& game, double credit);
 };

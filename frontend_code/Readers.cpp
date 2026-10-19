@@ -63,8 +63,8 @@ std::map<std::string, std::vector<Game>> Readers::read_game_collection() {
     while (std::getline(in, line)) {
         if (trim(line).empty()) continue;
         std::string name = field(line, 0, 19);
-        std::string owner = field(line, 20, 15);
-        games[owner].push_back(Game(name, 0.0, ""));
+        std::string buyer = field(line, 20, 15);
+        games[buyer].push_back(Game(name, 0.0, ""));
     }
     return games;
 }

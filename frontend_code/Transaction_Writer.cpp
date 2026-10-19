@@ -36,8 +36,8 @@ void Transaction_Writer::record_user_transaction(const std::string& code, const 
     write_file();
 }
 
-void Transaction_Writer::record_refund(const std::string& owner, const std::string& seller, double credit) {
-    transactions.push_back("05 " + pad_text(owner, 15) + " " + pad_text(seller, 15) + " " +
+void Transaction_Writer::record_refund(const std::string& buyer, const std::string& seller, double credit) {
+    transactions.push_back("05 " + pad_text(buyer, 15) + " " + pad_text(seller, 15) + " " +
                            format_money(credit, 9));
     write_file();
 }
@@ -48,9 +48,9 @@ void Transaction_Writer::record_sell(const std::string& owner, const std::string
     write_file();
 }
 
-void Transaction_Writer::record_buy(const std::string& owner, const std::string& seller,
+void Transaction_Writer::record_buy(const std::string& buyer, const std::string& seller,
                                     const std::string& game, double credit) {
     transactions.push_back("04 " + pad_text(game, 19) + " " + pad_text(seller, 15) + " " +
-                           pad_text(owner, 15) + " " + format_money(credit, 6));
+                           pad_text(buyer, 15) + " " + format_money(credit, 6));
     write_file();
 }

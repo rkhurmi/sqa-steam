@@ -5,7 +5,7 @@ Account_Management::Account_Management(Session& session, Transaction_Writer& tra
     : session(session), transaction(transaction) {}
 
 void Account_Management::create_user(const std::string& user) {
-    if (!session.is_logged_in() || session.get_current_user().get_user_type() != "AA") {
+    if (!session.is_admin()) {
         std::cout << "Error: admin privileges required.\n";
         return;
     }
@@ -21,8 +21,12 @@ void Account_Management::create_user(const std::string& user) {
 }
 
 void Account_Management::delete_user(const std::string& user) {
-    if (!session.is_logged_in() || session.get_current_user().get_user_type() != "AA") {
+    if (!session.is_admin()) {
         std::cout << "Error: admin privileges required.\n";
+        return;
+    }
+    if (session.get_current_user().get_username() == user) {
+        std::cout << "Error: cannot delete the logged-in user.\n";
         return;
     }
     std::vector<User>& users = session.get_all_users();
@@ -38,7 +42,7 @@ void Account_Management::delete_user(const std::string& user) {
 }
 
 void Account_Management::list_accounts() {
-    if (!session.is_logged_in() || session.get_current_user().get_user_type() != "AA") {
+    if (!session.is_admin()) {
         std::cout << "Error: admin privileges required.\n";
         return;
     }

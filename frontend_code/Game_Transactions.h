@@ -3,6 +3,7 @@
 #include <string>
 #include <vector>
 #include "Game.h"
+#include "Session.h"
 #include "Transaction_Writer.h"
 
 // Handles buying and selling games and tracks the games currently for sale.
@@ -10,11 +11,12 @@ class Game_Transactions {
 private:
     // Shared writer, held by reference so every class logs to the same file.
     Transaction_Writer& transaction;
+    Session& session;
     std::map<std::string, std::vector<Game>> games_for_sale;
 
 public:
-    // Initializes with the shared writer and the games currently for sale.
-    Game_Transactions(Transaction_Writer& transaction,
+    // Initializes with the session, the shared writer and the games currently for sale.
+    Game_Transactions(Session& session, Transaction_Writer& transaction,
                       const std::map<std::string, std::vector<Game>>& games_for_sale = {});
 
     // Lets `user` buy a game: prompts for the game name and seller, then records it.

@@ -33,6 +33,6 @@ public:
     // Reads games for sale, grouped by seller username.
     std::map<std::string, std::vector<Game>> read_available_games();
 
-    // Reads owned games, grouped by owner username.
+    // Reads owned games, grouped by buyer username.
     std::map<std::string, std::vector<Game>> read_game_collection();
 };
