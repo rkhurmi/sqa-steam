@@ -1,2 +1,9 @@
 frontend_code/frontend
+frontend_code/distribution-system
 frontend_code/daily_transactions.txt
+
+# test-run outputs: keep the folders, ignore what each run writes into them
+frontend_transaction_tests/actual/*/*
+!frontend_transaction_tests/actual/*/.gitkeep
+frontend_transaction_tests/reports/*
+!frontend_transaction_tests/reports/.gitkeep
