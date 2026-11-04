@@ -4,11 +4,12 @@
 #
 # Builds the distribution-system program, then runs every test input
 # through it and saves two actual outputs per test:
-#   - actual/<transaction_type>/<test_name>_output.txt             (terminal log)
-#   - actual/<transaction_type>/<test_name>_actual_transaction.txt (daily transaction file)
+#   - actual/<run>/<transaction_type>/<test_name>_output.txt             (terminal log)
+#   - actual/<run>/<transaction_type>/transactions/<test_name>_actual_transaction.txt (daily transaction file)
 #
 # Usage (run from the project root):
-#   ./frontend_transaction_tests/scripts/run_tests.sh
+#   ./frontend_transaction_tests/scripts/run_tests.sh              folder named after the date and time
+#   ./frontend_transaction_tests/scripts/run_tests.sh my_run       folder named "my_run" instead
 
 set -eu
 
@@ -20,7 +21,13 @@ PROJECT_DIR=$(cd "$TESTS_DIR/.." && pwd)
 CODE_DIR="$PROJECT_DIR/frontend_code"
 FIXTURES_DIR="$TESTS_DIR/fixtures"
 TRANSACTIONS_DIR="$TESTS_DIR/frontend_transactions"
-OUTPUT_DIR="$TESTS_DIR/actual"
+# Every run gets its own folder, so earlier results are never overwritten.
+# The folder is named after the date and time, unless a name is given as the first argument.
+RUN_ID=${1:-$(date +%Y-%m-%d_%H-%M-%S)}
+case "$RUN_ID" in
+    */*|.|..) echo "Run name must be a simple folder name (no slashes): $RUN_ID" >&2; exit 1 ;;
+esac
+OUTPUT_DIR="$TESTS_DIR/actual/$RUN_ID"
 PROGRAM="$CODE_DIR/distribution-system"
 
 ACCOUNTS_FILE="$FIXTURES_DIR/currentaccounts.txt"
@@ -38,6 +45,14 @@ for fixture_file in "$ACCOUNTS_FILE" "$GAMES_FILE" "$COLLECTION_FILE"; do
     fi
 done
 
+if [ -e "$OUTPUT_DIR" ]; then
+    echo "Run folder already exists: $OUTPUT_DIR - choose another name or delete it." >&2
+    exit 1
+fi
+
+mkdir -p "$OUTPUT_DIR"
+echo "Saving results in $OUTPUT_DIR"
+
 # ---- step 2: run every test ------------------------------------------------
 # Each test is one input file: <transaction_type>/input/<test_name>_input.txt
 test_count=0
@@ -48,7 +63,7 @@ for transaction_dir in "$TRANSACTIONS_DIR"/*/; do
     [ -d "$input_dir" ] || continue
 
     test_output_dir="$OUTPUT_DIR/$transaction_type"
-    mkdir -p "$test_output_dir"
+    mkdir -p "$test_output_dir/transactions"
 
     for input_file in "$input_dir"/*_input.txt; do
         [ -e "$input_file" ] || continue
@@ -60,7 +75,7 @@ for transaction_dir in "$TRANSACTIONS_DIR"/*/; do
         echo "Running Test $test_count: $test_name"
 
         output_file="$test_output_dir/${test_name}_output.txt"
-        transaction_file="$test_output_dir/${test_name}_actual_transaction.txt"
+        transaction_file="$test_output_dir/transactions/${test_name}_actual_transaction.txt"
 
         # delete any transaction file left over from a previous run of this test
         rm -f "$transaction_file"
