@@ -107,12 +107,12 @@ int main(int argc, char* argv[]) {
     std::string command;
     while (std::getline(std::cin, command)) {
         if (command == "login") {
-            std::string username = read_line("Username: ");
+            std::string username = read_line("Enter username:\n");
             session.login(username);
             continue;
         }
         if (!session.is_logged_in()) {
-            std::cout << "Error: no user is logged in.\n";
+            std::cout << "ERROR: You must log in first.\n";
             continue;
         }
         std::string current_username = session.get_current_user().get_username();

@@ -31,4 +31,7 @@ public:
     bool is_admin() const;
     User get_current_user() const;
     std::vector<User>& get_all_users();
+
+    // Adds `amount` to the named user's total credit and session credit (also updates the logged-in copy).
+    void add_credit(const std::string& user, double amount);
 };
