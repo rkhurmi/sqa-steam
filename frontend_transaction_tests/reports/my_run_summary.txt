@@ -1,137 +1,983 @@
-Comparison run: Tue Nov  3 19:52:59 EST 2026
+Comparison run: Tue Nov  3 23:50:48 EST 2026
 
 FAIL     addCredit/addcredit_admin_successful [terminal]
+             1,6c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Enter amount to add:
+             < Enter username to credit:
+             < Added $50.00 credit to fullstduser1.
+             < Logout successful.
+             ---
+             > Username: Amount: Error: unknown command.
 FAIL     addCredit/addcredit_admin_unknown_user [terminal]
+             1,6c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Enter amount to add:
+             < Enter username to credit:
+             < ERROR: Username not found.
+             < Logout successful.
+             ---
+             > Username: Amount: Error: unknown command.
 FAIL     addCredit/addcredit_cumulative_1000 [terminal]
+             1,7c1
+             < Enter username:
+             < Login successful, welcome buystduser1 (buy-standard).
+             < Enter amount to add:
+             < Added $600.00 credit to buystduser1.
+             < Enter amount to add:
+             < Added $400.00 credit to buystduser1.
+             < Logout successful.
+             ---
+             > Username: Amount: Amount:
+             \ No newline at end of file
 FAIL     addCredit/addcredit_cumulative_over_1000 [terminal]
+             1,7c1
+             < Enter username:
+             < Login successful, welcome buystduser1 (buy-standard).
+             < Enter amount to add:
+             < Added $600.00 credit to buystduser1.
+             < Enter amount to add:
+             < ERROR: Cannot add more than $1000.00 in credit per session.
+             < Logout successful.
+             ---
+             > Username: Amount: Amount:
+             \ No newline at end of file
 FAIL     addCredit/addcredit_exact_1000 [terminal]
+             1,5c1
+             < Enter username:
+             < Login successful, welcome buystduser1 (buy-standard).
+             < Enter amount to add:
+             < Added $1000.00 credit to buystduser1.
+             < Logout successful.
+             ---
+             > Username: Amount:
+             \ No newline at end of file
 FAIL     addCredit/addcredit_invalid_amount_format [terminal]
+             1,5c1
+             < Enter username:
+             < Login successful, welcome buystduser1 (buy-standard).
+             < Enter amount to add:
+             < ERROR: Invalid amount format.
+             < Logout successful.
+             ---
+             > Username: Amount: Error: invalid amount.
 FAIL     addCredit/addcredit_over_1000 [terminal]
+             1,5c1
+             < Enter username:
+             < Login successful, welcome buystduser1 (buy-standard).
+             < Enter amount to add:
+             < ERROR: Cannot add more than $1000.00 in credit per session.
+             < Logout successful.
+             ---
+             > Username: Amount:
+             \ No newline at end of file
 FAIL     addCredit/addcredit_standard_successful [terminal]
+             1,5c1
+             < Enter username:
+             < Login successful, welcome buystduser1 (buy-standard).
+             < Enter amount to add:
+             < Added $25.00 credit to buystduser1.
+             < Logout successful.
+             ---
+             > Username: Amount:
+             \ No newline at end of file
 FAIL     addCredit/addcredit_admin_successful [transaction]
+             1c1
+             < 06 fullstduser1    FS 000050.00
+             ---
+             > 06 admuser1           000050.00
 FAIL     addCredit/addcredit_admin_unknown_user [transaction]
+             0a1
+             > 06 admuser1           000050.00
 FAIL     addCredit/addcredit_cumulative_1000 [transaction]
+             1,3c1,3
+             < 06 buystduser1     BS 000600.00
+             < 06 buystduser1     BS 001000.00
+             < 00 buystduser1     BS 001000.00
+             ---
+             > 06 buystduser1        000600.00
+             > 06 buystduser1        000400.00
+             > 00 buystduser1     BS 000000.00
 FAIL     addCredit/addcredit_cumulative_over_1000 [transaction]
+             1,2c1,3
+             < 06 buystduser1     BS 000600.00
+             < 00 buystduser1     BS 000600.00
+             ---
+             > 06 buystduser1        000600.00
+             > 06 buystduser1        000500.00
+             > 00 buystduser1     BS 000000.00
 FAIL     addCredit/addcredit_exact_1000 [transaction]
+             1,2c1,2
+             < 06 buystduser1     BS 001000.00
+             < 00 buystduser1     BS 001000.00
+             ---
+             > 06 buystduser1        001000.00
+             > 00 buystduser1     BS 000000.00
 PASS     addCredit/addcredit_invalid_amount_format [transaction]
 FAIL     addCredit/addcredit_over_1000 [transaction]
+             0a1
+             > 06 buystduser1        001500.00
 FAIL     addCredit/addcredit_standard_successful [transaction]
+             1,2c1,2
+             < 06 buystduser1     BS 000025.00
+             < 00 buystduser1     BS 000025.00
+             ---
+             > 06 buystduser1        000025.00
+             > 00 buystduser1     BS 000000.00
 FAIL     buy/buy_already_owned [terminal]
+             1,11c1
+             < Enter username:
+             < Login successful, welcome fullstduser1 (full-standard).
+             < Enter amount to add:
+             < Added $40.00 credit to fullstduser1.
+             < Enter game name:
+             < Enter seller username:
+             < Purchased Stardew Valley from sellstduser1 for $15.00.
+             < Enter game name:
+             < Enter seller username:
+             < ERROR: You already own this game.
+             < Logout successful.
+             ---
+             > Username: Amount: Game name: Seller: Game name: Seller:
+             \ No newline at end of file
 FAIL     buy/buy_empty_game_name [terminal]
+             1,5c1
+             < Enter username:
+             < Login successful, welcome fullstduser1 (full-standard).
+             < Enter game name:
+             < ERROR: Game name cannot be blank.
+             < Logout successful.
+             ---
+             > Username: Game name: Seller: Error: seller has no games for sale.
 FAIL     buy/buy_empty_seller [terminal]
+             1,6c1
+             < Enter username:
+             < Login successful, welcome fullstduser1 (full-standard).
+             < Enter game name:
+             < Enter seller username:
+             < ERROR: Seller username cannot be blank.
+             < Logout successful.
+             ---
+             > Username: Game name: Seller: Error: seller has no games for sale.
 FAIL     buy/buy_exact_credit [terminal]
+             1,8c1
+             < Enter username:
+             < Login successful, welcome buystduser1 (buy-standard).
+             < Enter amount to add:
+             < Added $15.00 credit to buystduser1.
+             < Enter game name:
+             < Enter seller username:
+             < Purchased Stardew Valley from sellstduser1 for $15.00.
+             < Logout successful.
+             ---
+             > Username: Amount: Game name: Seller:
+             \ No newline at end of file
 FAIL     buy/buy_game_not_found [terminal]
+             1,8c1
+             < Enter username:
+             < Login successful, welcome fullstduser1 (full-standard).
+             < Enter amount to add:
+             < Added $20.00 credit to fullstduser1.
+             < Enter game name:
+             < Enter seller username:
+             < ERROR: Game not found.
+             < Logout successful.
+             ---
+             > Username: Amount: Game name: Seller: Error: game not found for that seller.
 FAIL     buy/buy_insufficient_credit [terminal]
+             1,8c1
+             < Enter username:
+             < Login successful, welcome buystduser1 (buy-standard).
+             < Enter amount to add:
+             < Added $5.00 credit to buystduser1.
+             < Enter game name:
+             < Enter seller username:
+             < ERROR: Insufficient credit to complete purchase.
+             < Logout successful.
+             ---
+             > Username: Amount: Game name: Seller:
+             \ No newline at end of file
 FAIL     buy/buy_ss_rejected [terminal]
+             1,4c1
+             < Enter username:
+             < Login successful, welcome sellstduser1 (sell-standard).
+             < ERROR: Permission denied, sell-standard accounts cannot buy games.
+             < Logout successful.
+             ---
+             > Username: Game name: Seller: Error: seller has no games for sale.
 FAIL     buy/buy_successful_admin [terminal]
+             1,9c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Enter amount to add:
+             < Enter username to credit:
+             < Added $20.00 credit to admuser1.
+             < Enter game name:
+             < Enter seller username:
+             < Purchased Stardew Valley from sellstduser1 for $15.00.
+             < Logout successful.
+             ---
+             > Username: Amount: Game name: Seller:
+             \ No newline at end of file
 FAIL     buy/buy_successful_bs [terminal]
+             1,8c1
+             < Enter username:
+             < Login successful, welcome buystduser1 (buy-standard).
+             < Enter amount to add:
+             < Added $20.00 credit to buystduser1.
+             < Enter game name:
+             < Enter seller username:
+             < Purchased Stardew Valley from sellstduser1 for $15.00.
+             < Logout successful.
+             ---
+             > Username: Amount: Game name: Seller:
+             \ No newline at end of file
 FAIL     buy/buy_successful_fs [terminal]
+             1,8c1
+             < Enter username:
+             < Login successful, welcome fullstduser1 (full-standard).
+             < Enter amount to add:
+             < Added $20.00 credit to fullstduser1.
+             < Enter game name:
+             < Enter seller username:
+             < Purchased Stardew Valley from sellstduser1 for $15.00.
+             < Logout successful.
+             ---
+             > Username: Amount: Game name: Seller:
+             \ No newline at end of file
 FAIL     buy/buy_already_owned [transaction]
+             1c1
+             < 06 fullstduser1    FS 000040.00
+             ---
+             > 06 fullstduser1       000040.00
+             3c3,4
+             < 00 fullstduser1    FS 000025.00
+             ---
+             > 04 Stardew Valley      sellstduser1    fullstduser1    015.00
+             > 00 fullstduser1    FS 000000.00
 FAIL     buy/buy_empty_game_name [transaction]
+             1d0
+             < 00 fullstduser1    FS 000000.00
 PASS     buy/buy_empty_seller [transaction]
 FAIL     buy/buy_exact_credit [transaction]
+             1c1
+             < 06 buystduser1     BS 000015.00
+             ---
+             > 06 buystduser1        000015.00
 FAIL     buy/buy_game_not_found [transaction]
+             1,2c1,2
+             < 06 fullstduser1    FS 000020.00
+             < 00 fullstduser1    FS 000020.00
+             ---
+             > 06 fullstduser1       000020.00
+             > 00 fullstduser1    FS 000000.00
 FAIL     buy/buy_insufficient_credit [transaction]
+             1,2c1,3
+             < 06 buystduser1     BS 000005.00
+             < 00 buystduser1     BS 000005.00
+             ---
+             > 06 buystduser1        000005.00
+             > 04 Stardew Valley      sellstduser1    buystduser1     015.00
+             > 00 buystduser1     BS 000000.00
 FAIL     buy/buy_ss_rejected [transaction]
+             1d0
+             < 00 sellstduser1    SS 000000.00
 FAIL     buy/buy_successful_admin [transaction]
+             1c1
+             < 06 admuser1        AA 000020.00
+             ---
+             > 06 admuser1           000020.00
+             3c3
+             < 00 admuser1        AA 000005.00
+             ---
+             > 00 admuser1        AA 000000.00
 FAIL     buy/buy_successful_bs [transaction]
+             1c1
+             < 06 buystduser1     BS 000020.00
+             ---
+             > 06 buystduser1        000020.00
+             3c3
+             < 00 buystduser1     BS 000005.00
+             ---
+             > 00 buystduser1     BS 000000.00
 FAIL     buy/buy_successful_fs [transaction]
+             1c1
+             < 06 fullstduser1    FS 000020.00
+             ---
+             > 06 fullstduser1       000020.00
+             3c3
+             < 00 fullstduser1    FS 000005.00
+             ---
+             > 00 fullstduser1    FS 000000.00
 FAIL     create/create_default_credit [terminal]
+             1,6c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Enter new username:
+             < Enter user type (admin, full-standard, buy-standard, sell-standard):
+             < User newuser02 created.
+             < Logout successful.
+             ---
+             > Username: New username: User type:
+             \ No newline at end of file
 FAIL     create/create_each_type [terminal]
+             1,15c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Enter new username:
+             < Enter user type (admin, full-standard, buy-standard, sell-standard):
+             < User newadmin01 created.
+             < Enter new username:
+             < Enter user type (admin, full-standard, buy-standard, sell-standard):
+             < User newfullstd01 created.
+             < Enter new username:
+             < Enter user type (admin, full-standard, buy-standard, sell-standard):
+             < User newbuystd01 created.
+             < Enter new username:
+             < Enter user type (admin, full-standard, buy-standard, sell-standard):
+             < User newsellstd01 created.
+             < Logout successful.
+             ---
+             > Username: New username: User type: New username: User type: New username: User type: New username: User type:
+             \ No newline at end of file
 FAIL     create/create_name_duplicate [terminal]
+             1,5c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Enter new username:
+             < ERROR: Username already exists.
+             < Logout successful.
+             ---
+             > Username: New username: Error: user already exists.
 FAIL     create/create_name_length_invalid [terminal]
+             1,7c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Enter new username:
+             < ERROR: Username must be between 1 and 15 characters.
+             < Enter new username:
+             < ERROR: Username must be between 1 and 15 characters.
+             < Logout successful.
+             ---
+             > Username: New username: User type: Error: unknown command.
 FAIL     create/create_non_admin_rejected [terminal]
+             1,4c1
+             < Enter username:
+             < Login successful, welcome fullstduser1 (full-standard).
+             < ERROR: Permission denied, create requires admin privileges.
+             < Logout successful.
+             ---
+             > Username: New username: Error: admin privileges required.
 FAIL     create/create_successful [terminal]
+             1,6c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Enter new username:
+             < Enter user type (admin, full-standard, buy-standard, sell-standard):
+             < User newuser01 created.
+             < Logout successful.
+             ---
+             > Username: New username: User type:
+             \ No newline at end of file
 FAIL     create/create_successful_max [terminal]
+             1,6c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Enter new username:
+             < Enter user type (admin, full-standard, buy-standard, sell-standard):
+             < User maxlenusername1 created.
+             < Logout successful.
+             ---
+             > Username: New username: User type:
+             \ No newline at end of file
 FAIL     create/create_default_credit [transaction]
+             1c1
+             < 01 newuser02       BS 000000.00
+             ---
+             > 01 newuser02       bu 000000.00
 FAIL     create/create_each_type [transaction]
+             1,4c1,4
+             < 01 newadmin01      AA 000000.00
+             < 01 newfullstd01    FS 000000.00
+             < 01 newbuystd01     BS 000000.00
+             < 01 newsellstd01    SS 000000.00
+             ---
+             > 01 newadmin01      ad 000000.00
+             > 01 newfullstd01    fu 000000.00
+             > 01 newbuystd01     bu 000000.00
+             > 01 newsellstd01    se 000000.00
 PASS     create/create_name_duplicate [transaction]
 FAIL     create/create_name_length_invalid [transaction]
+             0a1
+             > 01                 cr 000000.00
 FAIL     create/create_non_admin_rejected [transaction]
+             1d0
+             < 00 fullstduser1    FS 000000.00
 FAIL     create/create_successful [transaction]
+             1c1
+             < 01 newuser01       FS 000000.00
+             ---
+             > 01 newuser01       fu 000000.00
 FAIL     create/create_successful_max [transaction]
+             1c1
+             < 01 maxlenusername1 SS 000000.00
+             ---
+             > 01 maxlenusername1 se 000000.00
 FAIL     delete/delete_current_user [terminal]
+             1,5c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Enter username to delete:
+             < ERROR: You cannot delete the currently logged-in user.
+             < Logout successful.
+             ---
+             > Username: Username to delete: Error: cannot delete the logged-in user.
 FAIL     delete/delete_no_transactions [terminal]
+             1,8c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Enter username to delete:
+             < User sellstduser1 deleted.
+             < Enter game name:
+             < Enter seller username:
+             < ERROR: Seller not found.
+             < Logout successful.
+             ---
+             > Username: Username to delete: Game name: Seller:
+             \ No newline at end of file
 FAIL     delete/delete_non_admin_rejected [terminal]
+             1,4c1
+             < Enter username:
+             < Login successful, welcome fullstduser1 (full-standard).
+             < ERROR: Permission denied, delete requires admin privileges.
+             < Logout successful.
+             ---
+             > Username: Username to delete: Error: admin privileges required.
 FAIL     delete/delete_successful [terminal]
+             1,5c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Enter username to delete:
+             < User fullstduser1 deleted.
+             < Logout successful.
+             ---
+             > Username: Username to delete:
+             \ No newline at end of file
 FAIL     delete/delete_username_empty [terminal]
+             1,5c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Enter username to delete:
+             < ERROR: Username cannot be blank.
+             < Logout successful.
+             ---
+             > Username: Username to delete: Error: user not found.
 FAIL     delete/delete_username_invalid [terminal]
+             1,5c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Enter username to delete:
+             < ERROR: Username not found.
+             < Logout successful.
+             ---
+             > Username: Username to delete: Error: user not found.
 PASS     delete/delete_current_user [transaction]
 FAIL     delete/delete_no_transactions [transaction]
+             1a2
+             > 04 Stardew Valley      sellstduser1    admuser1        015.00
 FAIL     delete/delete_non_admin_rejected [transaction]
+             1d0
+             < 00 fullstduser1    FS 000000.00
 PASS     delete/delete_successful [transaction]
 PASS     delete/delete_username_empty [transaction]
 PASS     delete/delete_username_invalid [transaction]
 FAIL     list/list_current_sales [terminal]
+             1,6c1,4
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < game01 30.0
+             < game02 20.0
+             < game03 10.0
+             < Logout successful.
+             \ No newline at end of file
+             ---
+             > Username: game01 admuser1 30
+             > game02 admuser1 20
+             > game03 admuser1 10
+             > Stardew Valley sellstduser1 15
 FAIL     list/list_current_sales [transaction]
+             1,4c1
+             < 03 game01              admuser1      030.00
+             < 03 game02              admuser1      020.00
+             < 03 game03              admuser1      010.00
+             < 00 admuser1        AA 000000.00
+             \ No newline at end of file
+             ---
+             > 00 admuser1        AA 000000.00
 FAIL     login/login_aa [terminal]
+             1,3c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Logout successful.
+             \ No newline at end of file
+             ---
+             > Username:
+             \ No newline at end of file
 FAIL     login/login_admin_all [terminal]
+             1,12c1,2
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Enter new username:
+             < Enter user type (admin, full-standard, buy-standard, sell-standard):
+             < User newuser21 created.
+             < Enter username to delete:
+             < User fullstd02 deleted.
+             < Enter buyer username:
+             < Enter seller username:
+             < Enter refund amount:
+             < Refunded $10.00 from sellstduser1 to buystduser1.
+             < Logout successful.
+             \ No newline at end of file
+             ---
+             > Username: New username: User type: Username to delete: Error: user not found.
+             > Buyer username: Seller username: Refund amount:
+             \ No newline at end of file
 FAIL     login/login_bs [terminal]
+             1,3c1
+             < Enter username:
+             < Login successful, welcome buystduser1 (buy-standard).
+             < Logout successful.
+             \ No newline at end of file
+             ---
+             > Username:
+             \ No newline at end of file
 FAIL     login/login_empty_username [terminal]
+             1,2c1
+             < Enter username:
+             < ERROR: Username cannot be blank.
+             \ No newline at end of file
+             ---
+             > Username: Error: unknown user.
 FAIL     login/login_fs [terminal]
+             1,3c1
+             < Enter username:
+             < Login successful, welcome fullstduser1 (full-standard).
+             < Logout successful.
+             \ No newline at end of file
+             ---
+             > Username:
+             \ No newline at end of file
 FAIL     login/login_invalid_username [terminal]
+             1,2c1
+             < Enter username:
+             < ERROR: Username not found.
+             \ No newline at end of file
+             ---
+             > Username: Error: unknown user.
 FAIL     login/login_no_transaction_beforehand [terminal]
+             1,7c1,5
+             < ERROR: You must log in first.
+             < ERROR: You must log in first.
+             < ERROR: You must log in first.
+             < ERROR: You must log in first.
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Logout successful.
+             \ No newline at end of file
+             ---
+             > Error: no user is logged in.
+             > Error: no user is logged in.
+             > Error: no user is logged in.
+             > Error: no user is logged in.
+             > Username:
+             \ No newline at end of file
 FAIL     login/login_non_admin_rejected [terminal]
+             1,6c1,2
+             < Enter username:
+             < Login successful, welcome fullstduser1 (full-standard).
+             < ERROR: Permission denied, create requires admin privileges.
+             < ERROR: Permission denied, delete requires admin privileges.
+             < ERROR: Permission denied, refund requires admin privileges.
+             < Logout successful.
+             \ No newline at end of file
+             ---
+             > Username: New username: Error: admin privileges required.
+             > Buyer username: Seller username: Refund amount: Error: invalid amount.
 FAIL     login/login_ss [terminal]
+             1,3c1
+             < Enter username:
+             < Login successful, welcome sellstduser1 (sell-standard).
+             < Logout successful.
+             \ No newline at end of file
+             ---
+             > Username:
+             \ No newline at end of file
 FAIL     login/login_twice_rejected [terminal]
+             1,4c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < ERROR: Already logged in, log out first.
+             < Logout successful.
+             \ No newline at end of file
+             ---
+             > Username: Username: Error: a user is already logged in.
 PASS     login/login_aa [transaction]
 FAIL     login/login_admin_all [transaction]
+             1,2c1
+             < 01 newuser21       FS 000000.00
+             < 02 fullstd02       FS 000000.00
+             ---
+             > 01 newuser21       fu 000000.00
+             4c3
+             < 00 admuser1        AA 000000.00
+             \ No newline at end of file
+             ---
+             > 00 admuser1        AA 000000.00
 PASS     login/login_bs [transaction]
 PASS     login/login_fs [transaction]
 FAIL     login/login_no_transaction_beforehand [transaction]
+             1c1
+             < 00 admuser1        AA 000000.00
+             \ No newline at end of file
+             ---
+             > 00 admuser1        AA 000000.00
 FAIL     login/login_non_admin_rejected [transaction]
+             1d0
+             < 00 fullstduser1    FS 000000.00
+             \ No newline at end of file
 FAIL     login/login_ss [transaction]
+             1c1
+             < 00 sellstduser1    SS 000000.00
+             \ No newline at end of file
+             ---
+             > 00 sellstduser1    SS 000000.00
 FAIL     login/login_twice_rejected [transaction]
+             1d0
+             < 00 admuser1        AA 000000.00
+             \ No newline at end of file
 FAIL     logout/logout_invalid [terminal]
+             1,4c1,2
+             < ERROR: You must log in first.
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Logout successful.
+             ---
+             > Error: no user is logged in.
+             > Username:
+             \ No newline at end of file
 FAIL     logout/logout_login_only [terminal]
+             1,6c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Logout successful.
+             < Enter username:
+             < Login successful, welcome fullstduser1 (full-standard).
+             < Logout successful.
+             ---
+             > Username: Username:
+             \ No newline at end of file
 FAIL     logout/logout_reject_transactions [terminal]
+             1,10c1,7
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Logout successful.
+             < ERROR: You must log in first.
+             < ERROR: You must log in first.
+             < ERROR: You must log in first.
+             < ERROR: You must log in first.
+             < ERROR: You must log in first.
+             < ERROR: You must log in first.
+             < ERROR: You must log in first.
+             ---
+             > Username: Error: no user is logged in.
+             > Error: no user is logged in.
+             > Error: no user is logged in.
+             > Error: no user is logged in.
+             > Error: no user is logged in.
+             > Error: no user is logged in.
+             > Error: no user is logged in.
 FAIL     logout/logout_successful [terminal]
+             1,6c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Enter new username:
+             < Enter user type (admin, full-standard, buy-standard, sell-standard):
+             < User anotheruser1 created.
+             < Logout successful.
+             ---
+             > Username: New username: User type:
+             \ No newline at end of file
 FAIL     logout/logout_twice [terminal]
+             1,4c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Logout successful.
+             < ERROR: You must log in first.
+             ---
+             > Username: Error: no user is logged in.
 PASS     logout/logout_invalid [transaction]
 PASS     logout/logout_login_only [transaction]
 PASS     logout/logout_reject_transactions [transaction]
 FAIL     logout/logout_successful [transaction]
+             1c1
+             < 01 anotheruser1       FS 000000.00
+             ---
+             > 01 newuser01       fu 000000.00
 PASS     logout/logout_twice [transaction]
 FAIL     refund/refund_admin_successful [terminal]
+             1,7c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Enter buyer username:
+             < Enter seller username:
+             < Enter refund amount:
+             < Refunded $10.00 from sellstduser1 to buystduser1.
+             < Logout successful.
+             ---
+             > Username: Buyer username: Seller username: Refund amount:
+             \ No newline at end of file
 FAIL     refund/refund_bs_rejected [terminal]
+             1,4c1
+             < Enter username:
+             < Login successful, welcome buystduser1 (buy-standard).
+             < ERROR: Permission denied, refund requires admin privileges.
+             < Logout successful.
+             ---
+             > Username: Buyer username: Seller username: Refund amount: Error: invalid amount.
 FAIL     refund/refund_buyer_not_found [terminal]
+             1,5c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Enter buyer username:
+             < ERROR: Buyer not found.
+             < Logout successful.
+             ---
+             > Username: Buyer username: Seller username: Refund amount:
+             \ No newline at end of file
 FAIL     refund/refund_empty_buyer [terminal]
+             1,5c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Enter buyer username:
+             < ERROR: Buyer username cannot be blank.
+             < Logout successful.
+             ---
+             > Username: Buyer username: Seller username: Refund amount: Error: invalid amount.
 FAIL     refund/refund_empty_seller [terminal]
+             1,6c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Enter buyer username:
+             < Enter seller username:
+             < ERROR: Seller username cannot be blank.
+             < Logout successful.
+             ---
+             > Username: Buyer username: Seller username: Refund amount: Error: invalid amount.
 FAIL     refund/refund_fs_rejected [terminal]
+             1,4c1
+             < Enter username:
+             < Login successful, welcome fullstduser1 (full-standard).
+             < ERROR: Permission denied, refund requires admin privileges.
+             < Logout successful.
+             ---
+             > Username: Buyer username: Seller username: Refund amount: Error: invalid amount.
 FAIL     refund/refund_invalid_amount_format [terminal]
+             1,7c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Enter buyer username:
+             < Enter seller username:
+             < Enter refund amount:
+             < ERROR: Invalid amount format.
+             < Logout successful.
+             ---
+             > Username: Buyer username: Seller username: Refund amount: Error: invalid amount.
 FAIL     refund/refund_seller_not_found [terminal]
+             1,6c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Enter buyer username:
+             < Enter seller username:
+             < ERROR: Seller not found.
+             < Logout successful.
+             ---
+             > Username: Buyer username: Seller username: Refund amount:
+             \ No newline at end of file
 FAIL     refund/refund_ss_rejected [terminal]
+             1,4c1
+             < Enter username:
+             < Login successful, welcome sellstduser1 (sell-standard).
+             < ERROR: Permission denied, refund requires admin privileges.
+             < Logout successful.
+             ---
+             > Username: Buyer username: Seller username: Refund amount: Error: invalid amount.
 PASS     refund/refund_admin_successful [transaction]
 FAIL     refund/refund_bs_rejected [transaction]
+             1d0
+             < 00 buystduser1     BS 000000.00
 FAIL     refund/refund_buyer_not_found [transaction]
+             0a1
+             > 05 ghostbuyer1     sellstduser1    000005.00
 FAIL     refund/refund_empty_buyer [transaction]
+             1d0
+             < 00 admuser1        AA 000000.00
 FAIL     refund/refund_empty_seller [transaction]
+             1d0
+             < 00 admuser1        AA 000000.00
 FAIL     refund/refund_fs_rejected [transaction]
+             1d0
+             < 00 fullstduser1    FS 000000.00
 PASS     refund/refund_invalid_amount_format [transaction]
 FAIL     refund/refund_seller_not_found [transaction]
+             0a1
+             > 05 buystduser1     ghostseller1    000005.00
 FAIL     refund/refund_ss_rejected [transaction]
+             1d0
+             < 00 sellstduser1    SS 000000.00
 FAIL     sell/sell_bs_rejected [terminal]
+             1,4c1
+             < Enter username:
+             < Login successful, welcome buystduser1 (buy-standard).
+             < ERROR: Permission denied, buy-standard accounts cannot sell games.
+             < Logout successful.
+             ---
+             > Username: Game name: Price: Error: invalid price.
 FAIL     sell/sell_duplicate_game [terminal]
+             1,5c1,2
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Enter game name:
+             < ERROR: Game name already exists.
+             < Logout successful.
+             ---
+             > Username: Game name: Error: game name is already taken.
+             > Error: unknown command.
 FAIL     sell/sell_empty_game_name [terminal]
+             1,5c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Enter game name:
+             < ERROR: Game name cannot be blank.
+             < Logout successful.
+             ---
+             > Username: Game name: Price: Error: invalid price.
 FAIL     sell/sell_invalid_price_format [terminal]
+             1,6c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Enter game name:
+             < Enter price:
+             < ERROR: Invalid price format.
+             < Logout successful.
+             ---
+             > Username: Game name: Price: Error: invalid price.
 FAIL     sell/sell_name_over_26_chars [terminal]
+             1,5c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Enter game name:
+             < ERROR: Game name must be between 1 and 26 characters.
+             < Logout successful.
+             ---
+             > Username: Game name: Price: Error: invalid price.
 FAIL     sell/sell_price_max_valid [terminal]
+             1,6c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Enter game name:
+             < Enter price:
+             < Listed Exactly 25 Char Game Name for sale at $999.99.
+             < Logout successful.
+             ---
+             > Username: Game name: Price:
+             \ No newline at end of file
 FAIL     sell/sell_price_over_max [terminal]
+             1,6c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Enter game name:
+             < Enter price:
+             < ERROR: Price cannot exceed $999.99.
+             < Logout successful.
+             ---
+             > Username: Game name: Price:
+             \ No newline at end of file
 FAIL     sell/sell_purchase_same_session_rejected [terminal]
+             1,9c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Enter game name:
+             < Enter price:
+             < Listed Same Session Game for sale at $50.00.
+             < Enter game name:
+             < Enter seller username:
+             < ERROR: Game not found.
+             < Logout successful.
+             ---
+             > Username: Game name: Price: Game name: Seller:
+             \ No newline at end of file
 FAIL     sell/sell_successful_admin [terminal]
+             1,6c1
+             < Enter username:
+             < Login successful, welcome admuser1 (admin).
+             < Enter game name:
+             < Enter price:
+             < Listed Chrono Odyssey for sale at $25.00.
+             < Logout successful.
+             ---
+             > Username: Game name: Price:
+             \ No newline at end of file
 FAIL     sell/sell_successful_fs [terminal]
+             1,6c1,2
+             < Enter username:
+             < Login successful, welcome fullstduser1 (full-standard).
+             < Enter game name:
+             < Enter price:
+             < Listed Stardew Valley for sale at $10.00.
+             < Logout successful.
+             ---
+             > Username: Game name: Error: game name is already taken.
+             > Error: unknown command.
 FAIL     sell/sell_successful_ss [terminal]
+             1,6c1,2
+             < Enter username:
+             < Login successful, welcome sellstduser1 (sell-standard).
+             < Enter game name:
+             < Enter price:
+             < Listed Stardew Valley for sale at $5.00.
+             < Logout successful.
+             ---
+             > Username: Game name: Error: game name is already taken.
+             > Error: unknown command.
 FAIL     sell/sell_bs_rejected [transaction]
+             1d0
+             < 00 buystduser1     BS 000000.00
 PASS     sell/sell_duplicate_game [transaction]
 FAIL     sell/sell_empty_game_name [transaction]
+             1d0
+             < 00 admuser1        AA 000000.00
 PASS     sell/sell_invalid_price_format [transaction]
 MISSING  sell/sell_name_over_25_chars [transaction]  (no /Users/rosiekhurmi/Desktop/School/sqa-steam/frontend_transaction_tests/scripts/../actual/my_run/sell/transactions/sell_name_over_25_chars_actual_transaction.txt)
 FAIL     sell/sell_price_max_valid [transaction]
+             1c1
+             < 03 Exactly 25 Char Game Name admuser1        999.99
+             ---
+             > 03 Exactly 25 Char Gam admuser1        999.99
 FAIL     sell/sell_price_over_max [transaction]
+             0a1
+             > 03 Over Max Game       admuser1        1000.00
 FAIL     sell/sell_purchase_same_session_rejected [transaction]
+             1a2
+             > 04 Same Session Game   admuser1        admuser1        050.00
 PASS     sell/sell_successful_admin [transaction]
 FAIL     sell/sell_successful_fs [transaction]
+             1d0
+             < 03 Stardew Valley      fullstduser1    010.00
 FAIL     sell/sell_successful_ss [transaction]
+             1d0
+             < 03 Stardew Valley      sellstduser1    005.00
 
 ================ SUMMARY ================
 Total: 132   Passed: 19   Failed: 112   Missing: 1
