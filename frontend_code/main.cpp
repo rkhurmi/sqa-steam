@@ -23,8 +23,8 @@
  *   output. The program stops when standard input runs out.
  *
  * How to run:
- *   g++ -std=c++17 -o frontend *.cpp
- *   ./frontend <user_accounts_file> <available_games_file> <game_collection_file> <daily_transaction_file>
+ *   g++ -std=c++17 -o distribution-system *.cpp
+ *   ./distribution-system <user_accounts_file> <available_games_file> <game_collection_file> <daily_transaction_file>
  */
 
 

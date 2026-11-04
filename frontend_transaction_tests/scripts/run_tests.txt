@@ -1,1 +1,0 @@
-The following file is a placeholder for a shell script.
