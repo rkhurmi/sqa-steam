@@ -27,6 +27,12 @@ public:
     std::string get_username() const;
     std::string get_user_type() const;
 
+    // Returns the readable type name, e.g. "admin" for "AA".
+    std::string get_type_name() const;
+
+    // Turns a type name ("admin", ...) into its two-letter code, or "" if unknown.
+    static std::string code_from_type_name(const std::string& name);
+
     double get_total_credit() const;
     void set_total_credit(double credit);
 

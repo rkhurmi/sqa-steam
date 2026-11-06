@@ -27,3 +27,20 @@ void User::set_credit_in_session(double credit) { credit_in_session = credit; }
 
 std::vector<Game> User::get_game_collection() const { return game_collection; }
 void User::set_game_collection(const std::vector<Game>& games) { game_collection = games; }
+
+// Human-readable name for the user's two-letter type code.
+std::string User::get_type_name() const {
+    if (user_type == "AA") return "admin";
+    if (user_type == "FS") return "full-standard";
+    if (user_type == "BS") return "buy-standard";
+    if (user_type == "SS") return "sell-standard";
+    return user_type;
+}
+
+std::string User::code_from_type_name(const std::string& name) {
+    if (name == "admin") return "AA";
+    if (name == "full-standard") return "FS";
+    if (name == "buy-standard") return "BS";
+    if (name == "sell-standard") return "SS";
+    return "";
+}

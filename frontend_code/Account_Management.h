@@ -14,11 +14,12 @@ public:
     // Initializes with the live session and the shared writer.
     Account_Management(Session& session, Transaction_Writer& transaction);
 
-    // Creates a new user account and records it.
-    void create_user(const std::string& user);
+    // Prompts for and creates a new user account (admin only) and records it.
+    void create_user();
 
-    // Deletes a user account and records it.
-    void delete_user(const std::string& user);
+    // Prompts for and deletes a user account (admin only) and records it.
+    // Returns the deleted username, or an empty string if nothing was deleted.
+    std::string delete_user();
 
     // Prints every active account and its type and credit (admin only).
     void list_accounts();
