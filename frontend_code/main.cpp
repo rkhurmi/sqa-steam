@@ -54,11 +54,9 @@ void process_transactions(const std::string& command, const std::string& usernam
     if (command == "logout") {
         session.logout(username);
     } else if (command == "create") {
-        std::string new_username = read_line("New username: ");
-        accounts.create_user(new_username);
+        accounts.create_user();
     } else if (command == "delete") {
-        std::string delete_username = read_line("Username to delete: ");
-        accounts.delete_user(delete_username);
+        accounts.delete_user();
     } else if (command == "list") {
         games.list_games();
     } else if (command == "listaccounts") {
