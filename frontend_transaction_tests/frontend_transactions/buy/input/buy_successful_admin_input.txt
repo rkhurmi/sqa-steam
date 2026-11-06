@@ -2,6 +2,7 @@ login
 admuser1
 addcredit
 20.00
+admuser1
 buy
 Stardew Valley
 sellstduser1
