@@ -64,3 +64,23 @@ void Session::add_credit(const std::string& user, double amount) {
         }
     }
 }
+
+void Session::adjust_credit(const std::string& user, double amount) {
+    for (User& u : all_users) {
+        if (u.get_username() == user) {
+            u.set_total_credit(u.get_total_credit() + amount);
+            if (logged_in && current_user.get_username() == user) current_user = u;
+            return;
+        }
+    }
+}
+
+void Session::add_game(const std::string& user, const std::string& game) {
+    for (User& u : all_users) {
+        if (u.get_username() == user) {
+            u.add_game(game);
+            if (logged_in && current_user.get_username() == user) current_user = u;
+            return;
+        }
+    }
+}

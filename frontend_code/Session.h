@@ -34,4 +34,10 @@ public:
 
     // Adds `amount` to the named user's total credit and session credit (also updates the logged-in copy).
     void add_credit(const std::string& user, double amount);
+
+    // Changes the named user's total credit only (purchases and refunds); session credit is untouched.
+    void adjust_credit(const std::string& user, double amount);
+
+    // Adds a game to the named user's collection (also updates the logged-in copy).
+    void add_game(const std::string& user, const std::string& game);
 };

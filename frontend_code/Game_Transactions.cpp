@@ -1,30 +1,65 @@
 #include "Game_Transactions.h"
+#include <iomanip>
+#include <sstream>
 #include <iostream>
 
 Game_Transactions::Game_Transactions(Session& session, Transaction_Writer& transaction,
                                      const std::map<std::string, std::vector<Game>>& games_for_sale)
     : transaction(transaction), session(session), games_for_sale(games_for_sale) {}
 
-void Game_Transactions::buy(const std::string& user) {
-    std::string game, seller;
-    std::cout << "Game name: ";
-    std::getline(std::cin, game);
-    std::cout << "Seller: ";
-    std::getline(std::cin, seller);
+// Formats an amount as dollars with two decimals, e.g. "15.00".
+static std::string dollars(double amount) {
+    std::ostringstream oss;
+    oss << std::fixed << std::setprecision(2) << amount;
+    return oss.str();
+}
 
-    auto it = games_for_sale.find(seller);
-    if (it == games_for_sale.end()) {
-        std::cout << "Error: seller has no games for sale.\n";
+void Game_Transactions::buy(const std::string& user) {
+    if (session.get_current_user().get_user_type() == "SS") {
+        std::cout << "ERROR: Permission denied, sell-standard accounts cannot buy games.\n";
         return;
     }
-    std::vector<Game>& list = it->second;
-    for (size_t i = 0; i < list.size(); ++i) {
-        if (list[i].get_name() == game) {
-            transaction.record_buy(user, seller, game, list[i].get_price());
+    std::cout << "Enter game name:\n";
+    std::string game;
+    std::getline(std::cin, game);
+    if (game.empty()) {
+        std::cout << "ERROR: Game name cannot be blank.\n";
+        return;
+    }
+    std::cout << "Enter seller username:\n";
+    std::string seller;
+    std::getline(std::cin, seller);
+    if (seller.empty()) {
+        std::cout << "ERROR: Seller username cannot be blank.\n";
+        return;
+    }
+    if (session.find_user(seller).get_username().empty()) {
+        std::cout << "ERROR: Seller not found.\n";
+        return;
+    }
+
+    auto it = games_for_sale.find(seller);
+    if (it != games_for_sale.end()) {
+        for (const Game& listed : it->second) {
+            if (listed.get_name() != game) continue;
+            User buyer = session.find_user(user);
+            if (buyer.owns_game(game)) {
+                std::cout << "ERROR: You already own this game.\n";
+                return;
+            }
+            if (buyer.get_total_credit() < listed.get_price()) {
+                std::cout << "ERROR: Insufficient credit to complete purchase.\n";
+                return;
+            }
+            session.adjust_credit(user, -listed.get_price());
+            session.adjust_credit(seller, listed.get_price());
+            session.add_game(user, game);
+            transaction.record_buy(user, seller, game, listed.get_price());
+            std::cout << "Purchased " + game + " from " + seller + " for $" + dollars(listed.get_price()) + ".\n";
             return;
         }
     }
-    std::cout << "Error: game not found for that seller.\n";
+    std::cout << "ERROR: Game not found.\n";
 }
 
 void Game_Transactions::sell(const std::string& user) {
