@@ -1,0 +1,8 @@
+Enter username:
+Login successful, welcome buystduser1 (buy-standard).
+Enter search query:
+Game: Stardew Valley sellstduser1 15.00
+User: fullstduser1 FS
+User: fullstd02 FS
+User: sellstduser1 SS
+Logout successful.

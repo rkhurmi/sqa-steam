@@ -1,0 +1,5 @@
+login
+fullstduser1
+search
+idle
+logout
