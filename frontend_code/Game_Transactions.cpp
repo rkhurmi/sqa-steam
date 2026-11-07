@@ -1,4 +1,6 @@
 #include "Game_Transactions.h"
+#include <algorithm>
+#include <cctype>
 #include <iomanip>
 #include <sstream>
 #include <iostream>
@@ -129,4 +131,42 @@ bool Game_Transactions::is_name_taken(const std::string& game) const {
         if (g.get_name() == game) return true;
     }
     return false;
+}
+
+// Returns true if `user` has a non-empty list of games available to buy.
+bool Game_Transactions::is_selling(const std::string& user) const {
+    auto it = games_for_sale.find(user);
+    return it != games_for_sale.end() && !it->second.empty();
+}
+
+// Prompts for a search query, then prints "Game: <name> <seller> <price>" for each
+// game for sale and "User: <username> <type>" for each user whose name contains the
+// query (case-sensitive). Admins who are not selling are hidden from non-admins.
+// Prints "No results found." when nothing matches.
+void Game_Transactions::search() {
+    std::cout << "Enter search query:\n";
+    std::string query;
+    std::getline(std::cin, query);
+    if (query.empty()) {
+        std::cout << "ERROR: Search query cannot be blank.\n";
+        return;
+    }
+    bool found = false;
+    for (const auto& entry : games_for_sale) {
+        for (const Game& listed_game : entry.second) {
+            if (listed_game.get_name().find(query) == std::string::npos) continue;
+            std::cout << "Game: " << listed_game.get_name() << " " << entry.first << " "
+                      << dollars(listed_game.get_price()) << "\n";
+            found = true;
+        }
+    }
+    bool viewer_is_admin = session.is_admin();
+    for (const User& account : session.get_all_users()) {
+        if (account.get_username().find(query) == std::string::npos) continue;
+        if (!viewer_is_admin && account.get_user_type() == "AA" &&
+            !is_selling(account.get_username())) continue;
+        std::cout << "User: " << account.get_username() << " " << account.get_user_type() << "\n";
+        found = true;
+    }
+    if (!found) std::cout << "No results found.\n";
 }

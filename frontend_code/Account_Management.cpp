@@ -1,4 +1,5 @@
 #include "Account_Management.h"
+#include <iomanip>
 #include <iostream>
 
 Account_Management::Account_Management(Session& session, Transaction_Writer& transaction)
@@ -63,6 +64,8 @@ std::string Account_Management::delete_user() {
     return "";
 }
 
+// Admin only: prints "<username> <type> <credit>" for every account, with credit
+// always at 2 decimals so the output does not depend on earlier commands.
 void Account_Management::list_accounts() {
     if (!session.is_admin()) {
         std::cout << "ERROR: Permission denied, listaccounts requires admin privileges.\n";
@@ -70,6 +73,6 @@ void Account_Management::list_accounts() {
     }
     for (const User& account : session.get_all_users()) {
         std::cout << account.get_username() << " " << account.get_user_type() << " "
-                  << account.get_total_credit() << "\n";
+                  << std::fixed << std::setprecision(2) << account.get_total_credit() << "\n";
     }
 }

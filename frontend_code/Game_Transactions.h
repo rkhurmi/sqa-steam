@@ -35,4 +35,11 @@ public:
 
     // Returns true if a game with this name is already for sale or was listed this session.
     bool is_name_taken(const std::string& game) const;
+
+    // Prompts for a query and prints every game and user whose name contains it
+    // (case-insensitive). Non-admins do not see admins who are not selling a game.
+    void search();
+
+    // Returns true if `user` has at least one game currently for sale.
+    bool is_selling(const std::string& user) const;
 };
