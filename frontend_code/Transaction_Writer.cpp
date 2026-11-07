@@ -57,19 +57,19 @@ void Transaction_Writer::record_refund(const std::string& buyer, const std::stri
     write_file();
 }
 
-// Records a sell (03) line. The game name field is 19 characters.
-// 03 GAME_______________ SELLER_________ PPPPPP
+// Records a sell (03) line. The game name field is 26 characters, the same as the game files.
+// 03 GAME______________________ SELLER_________ PPPPPP
 void Transaction_Writer::record_sell(const std::string& owner, const std::string& game, double credit) {
-    transactions.push_back("03 " + pad_text(game, 19) + " " + pad_text(owner, 15) + " " +
+    transactions.push_back("03 " + pad_text(game, 26) + " " + pad_text(owner, 15) + " " +
                            format_money(credit, 6));
     write_file();
 }
 
-// Records a buy (04) line. The game name field is 19 characters.
-// 04 GAME_______________ SELLER_________ BUYER__________ PPPPPP
+// Records a buy (04) line. The game name field is 26 characters, the same as the game files.
+// 04 GAME______________________ SELLER_________ BUYER__________ PPPPPP
 void Transaction_Writer::record_buy(const std::string& buyer, const std::string& seller,
                                     const std::string& game, double credit) {
-    transactions.push_back("04 " + pad_text(game, 19) + " " + pad_text(seller, 15) + " " +
+    transactions.push_back("04 " + pad_text(game, 26) + " " + pad_text(seller, 15) + " " +
                            pad_text(buyer, 15) + " " + format_money(credit, 6));
     write_file();
 }
