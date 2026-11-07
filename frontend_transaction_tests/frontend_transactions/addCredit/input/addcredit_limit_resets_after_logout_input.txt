@@ -1,0 +1,10 @@
+login
+buystduser1
+addcredit
+600.00
+logout
+login
+buystduser1
+addcredit
+500.00
+logout

@@ -40,8 +40,9 @@ void Session::login(const std::string& user) {
               << " (" << type_name(found.get_user_type()) << ").\n";
 }
 
-// Logs the current user out and writes the 00 end-of-session line
-// with the user's credit as it stands now.
+// Logs the current user out, writes the 00 end-of-session line and resets every
+// account's credit added this session (for the $1000 limit). The 00 line carries
+// the user's credit as it stands now.
 void Session::logout(const std::string& user) {
     if (!logged_in || current_user.get_username() != user) {
         std::cout << "ERROR: You must log in first.\n";
@@ -50,6 +51,8 @@ void Session::logout(const std::string& user) {
     transaction.record_user_transaction("00", current_user.get_username(),
                                         current_user.get_user_type(),
                                         current_user.get_total_credit());
+    // The $1000 addcredit limit is per session, so every account starts the next session at 0.
+    for (User& u : all_users) u.set_credit_in_session(0.0);
     logged_in = false;
     current_user = User();
     std::cout << "Logout successful.\n";
