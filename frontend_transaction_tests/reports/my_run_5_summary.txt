@@ -1,0 +1,243 @@
+Comparison run: Fri  6 Nov 2026 19:16:25 EST
+
+PASS     addCredit/addcredit_admin_successful [terminal]
+PASS     addCredit/addcredit_admin_unknown_user [terminal]
+PASS     addCredit/addcredit_cumulative_1000 [terminal]
+PASS     addCredit/addcredit_cumulative_over_1000 [terminal]
+PASS     addCredit/addcredit_exact_1000 [terminal]
+PASS     addCredit/addcredit_invalid_amount_format [terminal]
+PASS     addCredit/addcredit_over_1000 [terminal]
+PASS     addCredit/addcredit_standard_successful [terminal]
+PASS     addCredit/addcredit_admin_successful [transaction]
+PASS     addCredit/addcredit_admin_unknown_user [transaction]
+PASS     addCredit/addcredit_cumulative_1000 [transaction]
+PASS     addCredit/addcredit_cumulative_over_1000 [transaction]
+PASS     addCredit/addcredit_exact_1000 [transaction]
+PASS     addCredit/addcredit_invalid_amount_format [transaction]
+PASS     addCredit/addcredit_over_1000 [transaction]
+PASS     addCredit/addcredit_standard_successful [transaction]
+PASS     buy/buy_already_owned [terminal]
+PASS     buy/buy_empty_game_name [terminal]
+PASS     buy/buy_empty_seller [terminal]
+PASS     buy/buy_exact_credit [terminal]
+PASS     buy/buy_game_not_found [terminal]
+PASS     buy/buy_insufficient_credit [terminal]
+PASS     buy/buy_ss_rejected [terminal]
+PASS     buy/buy_successful_admin [terminal]
+PASS     buy/buy_successful_bs [terminal]
+PASS     buy/buy_successful_fs [terminal]
+PASS     buy/buy_already_owned [transaction]
+PASS     buy/buy_empty_game_name [transaction]
+PASS     buy/buy_empty_seller [transaction]
+PASS     buy/buy_exact_credit [transaction]
+PASS     buy/buy_game_not_found [transaction]
+PASS     buy/buy_insufficient_credit [transaction]
+PASS     buy/buy_ss_rejected [transaction]
+PASS     buy/buy_successful_admin [transaction]
+PASS     buy/buy_successful_bs [transaction]
+PASS     buy/buy_successful_fs [transaction]
+PASS     create/create_default_credit [terminal]
+PASS     create/create_each_type [terminal]
+PASS     create/create_name_duplicate [terminal]
+PASS     create/create_name_length_invalid [terminal]
+PASS     create/create_non_admin_rejected [terminal]
+PASS     create/create_successful [terminal]
+PASS     create/create_successful_max [terminal]
+PASS     create/create_default_credit [transaction]
+PASS     create/create_each_type [transaction]
+PASS     create/create_name_duplicate [transaction]
+PASS     create/create_name_length_invalid [transaction]
+PASS     create/create_non_admin_rejected [transaction]
+PASS     create/create_successful [transaction]
+PASS     create/create_successful_max [transaction]
+PASS     delete/delete_current_user [terminal]
+PASS     delete/delete_no_transactions [terminal]
+PASS     delete/delete_non_admin_rejected [terminal]
+PASS     delete/delete_successful [terminal]
+PASS     delete/delete_username_empty [terminal]
+PASS     delete/delete_username_invalid [terminal]
+PASS     delete/delete_current_user [transaction]
+PASS     delete/delete_no_transactions [transaction]
+PASS     delete/delete_non_admin_rejected [transaction]
+PASS     delete/delete_successful [transaction]
+PASS     delete/delete_username_empty [transaction]
+PASS     delete/delete_username_invalid [transaction]
+PASS     list/list_current_sales [terminal]
+PASS     list/list_current_sales [transaction]
+PASS     login/login_aa [terminal]
+FAIL     login/login_admin_all [terminal]
+             8,12c8
+             < Enter buyer username:
+             < Enter seller username:
+             < Enter refund amount:
+             < Refunded $10.00 from sellstduser1 to buystduser1.
+             < Logout successful.
+             ---
+             > Buyer username: Seller username: Refund amount: Logout successful.
+PASS     login/login_bs [terminal]
+PASS     login/login_empty_username [terminal]
+PASS     login/login_fs [terminal]
+PASS     login/login_invalid_username [terminal]
+PASS     login/login_no_transaction_beforehand [terminal]
+FAIL     login/login_non_admin_rejected [terminal]
+             5,6c5
+             < ERROR: Permission denied, refund requires admin privileges.
+             < Logout successful.
+             ---
+             > Buyer username: Seller username: Refund amount: Error: invalid amount.
+PASS     login/login_ss [terminal]
+PASS     login/login_twice_rejected [terminal]
+PASS     login/login_aa [transaction]
+PASS     login/login_admin_all [transaction]
+PASS     login/login_bs [transaction]
+PASS     login/login_fs [transaction]
+PASS     login/login_no_transaction_beforehand [transaction]
+FAIL     login/login_non_admin_rejected [transaction]
+             1d0
+             < 00 fullstduser1    FS 000000.00
+PASS     login/login_ss [transaction]
+PASS     login/login_twice_rejected [transaction]
+PASS     logout/logout_invalid [terminal]
+PASS     logout/logout_login_only [terminal]
+PASS     logout/logout_reject_transactions [terminal]
+PASS     logout/logout_successful [terminal]
+PASS     logout/logout_twice [terminal]
+PASS     logout/logout_invalid [transaction]
+PASS     logout/logout_login_only [transaction]
+PASS     logout/logout_reject_transactions [transaction]
+PASS     logout/logout_successful [transaction]
+PASS     logout/logout_twice [transaction]
+FAIL     refund/refund_admin_successful [terminal]
+             3,7c3
+             < Enter buyer username:
+             < Enter seller username:
+             < Enter refund amount:
+             < Refunded $10.00 from sellstduser1 to buystduser1.
+             < Logout successful.
+             ---
+             > Buyer username: Seller username: Refund amount: Logout successful.
+FAIL     refund/refund_bs_rejected [terminal]
+             3,4c3
+             < ERROR: Permission denied, refund requires admin privileges.
+             < Logout successful.
+             ---
+             > Buyer username: Seller username: Refund amount: Error: invalid amount.
+FAIL     refund/refund_buyer_not_found [terminal]
+             3,5c3
+             < Enter buyer username:
+             < ERROR: Buyer not found.
+             < Logout successful.
+             ---
+             > Buyer username: Seller username: Refund amount: Logout successful.
+FAIL     refund/refund_empty_buyer [terminal]
+             3,5c3
+             < Enter buyer username:
+             < ERROR: Buyer username cannot be blank.
+             < Logout successful.
+             ---
+             > Buyer username: Seller username: Refund amount: Error: invalid amount.
+FAIL     refund/refund_empty_seller [terminal]
+             3,6c3
+             < Enter buyer username:
+             < Enter seller username:
+             < ERROR: Seller username cannot be blank.
+             < Logout successful.
+             ---
+             > Buyer username: Seller username: Refund amount: Error: invalid amount.
+FAIL     refund/refund_fs_rejected [terminal]
+             3,4c3
+             < ERROR: Permission denied, refund requires admin privileges.
+             < Logout successful.
+             ---
+             > Buyer username: Seller username: Refund amount: Error: invalid amount.
+FAIL     refund/refund_invalid_amount_format [terminal]
+             3,6c3
+             < Enter buyer username:
+             < Enter seller username:
+             < Enter refund amount:
+             < ERROR: Invalid amount format.
+             ---
+             > Buyer username: Seller username: Refund amount: Error: invalid amount.
+FAIL     refund/refund_seller_not_found [terminal]
+             3,6c3
+             < Enter buyer username:
+             < Enter seller username:
+             < ERROR: Seller not found.
+             < Logout successful.
+             ---
+             > Buyer username: Seller username: Refund amount: Logout successful.
+FAIL     refund/refund_ss_rejected [terminal]
+             3,4c3
+             < ERROR: Permission denied, refund requires admin privileges.
+             < Logout successful.
+             ---
+             > Buyer username: Seller username: Refund amount: Error: invalid amount.
+PASS     refund/refund_admin_successful [transaction]
+FAIL     refund/refund_bs_rejected [transaction]
+             1d0
+             < 00 buystduser1     BS 000000.00
+FAIL     refund/refund_buyer_not_found [transaction]
+             0a1
+             > 05 ghostbuyer1     sellstduser1    000005.00
+FAIL     refund/refund_empty_buyer [transaction]
+             1d0
+             < 00 admuser1        AA 000000.00
+FAIL     refund/refund_empty_seller [transaction]
+             1d0
+             < 00 admuser1        AA 000000.00
+FAIL     refund/refund_fs_rejected [transaction]
+             1d0
+             < 00 fullstduser1    FS 000000.00
+PASS     refund/refund_invalid_amount_format [transaction]
+FAIL     refund/refund_seller_not_found [transaction]
+             0a1
+             > 05 buystduser1     ghostseller1    000005.00
+FAIL     refund/refund_ss_rejected [transaction]
+             1d0
+             < 00 sellstduser1    SS 000000.00
+PASS     sell/sell_bs_rejected [terminal]
+PASS     sell/sell_duplicate_game [terminal]
+PASS     sell/sell_empty_game_name [terminal]
+PASS     sell/sell_invalid_price_format [terminal]
+PASS     sell/sell_name_over_26_chars [terminal]
+PASS     sell/sell_price_max_valid [terminal]
+PASS     sell/sell_price_over_max [terminal]
+PASS     sell/sell_purchase_same_session_rejected [terminal]
+PASS     sell/sell_successful_admin [terminal]
+PASS     sell/sell_successful_fs [terminal]
+PASS     sell/sell_successful_ss [terminal]
+PASS     sell/sell_bs_rejected [transaction]
+PASS     sell/sell_duplicate_game [transaction]
+PASS     sell/sell_empty_game_name [transaction]
+PASS     sell/sell_invalid_price_format [transaction]
+PASS     sell/sell_name_over_26_chars [transaction]
+PASS     sell/sell_price_max_valid [transaction]
+PASS     sell/sell_price_over_max [transaction]
+PASS     sell/sell_purchase_same_session_rejected [transaction]
+PASS     sell/sell_successful_admin [transaction]
+PASS     sell/sell_successful_fs [transaction]
+PASS     sell/sell_successful_ss [transaction]
+
+================ SUMMARY ================
+Total: 132   Passed: 113   Failed: 19   Missing: 0
+
+Needs attention:
+  - login/login_admin_all [terminal]
+  - login/login_non_admin_rejected [terminal]
+  - login/login_non_admin_rejected [transaction]
+  - refund/refund_admin_successful [terminal]
+  - refund/refund_bs_rejected [terminal]
+  - refund/refund_buyer_not_found [terminal]
+  - refund/refund_empty_buyer [terminal]
+  - refund/refund_empty_seller [terminal]
+  - refund/refund_fs_rejected [terminal]
+  - refund/refund_invalid_amount_format [terminal]
+  - refund/refund_seller_not_found [terminal]
+  - refund/refund_ss_rejected [terminal]
+  - refund/refund_bs_rejected [transaction]
+  - refund/refund_buyer_not_found [transaction]
+  - refund/refund_empty_buyer [transaction]
+  - refund/refund_empty_seller [transaction]
+  - refund/refund_fs_rejected [transaction]
+  - refund/refund_seller_not_found [transaction]
+  - refund/refund_ss_rejected [transaction]

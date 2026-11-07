@@ -105,6 +105,11 @@ int main(int argc, char* argv[]) {
     std::string command;
     while (std::getline(std::cin, command)) {
         if (command == "login") {
+            // A second login is rejected before prompting, so the next line is read as a command.
+            if (session.is_logged_in()) {
+                session.login("");
+                continue;
+            }
             std::string username = read_line("Enter username:\n");
             session.login(username);
             continue;

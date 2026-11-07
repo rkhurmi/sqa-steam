@@ -15,12 +15,16 @@ Session::Session(Transaction_Writer& transaction, const std::vector<User>& all_u
 
 void Session::login(const std::string& user) {
     if (logged_in) {
-        std::cout << "Error: a user is already logged in.\n";
+        std::cout << "ERROR: Already logged in, log out first.\n";
+        return;
+    }
+    if (user.empty()) {
+        std::cout << "ERROR: Username cannot be blank.\n";
         return;
     }
     User found = find_user(user);
     if (found.get_username().empty()) {
-        std::cout << "Error: unknown user.\n";
+        std::cout << "ERROR: Username not found.\n";
         return;
     }
     current_user = found;
