@@ -23,7 +23,8 @@ static std::string dollars(double amount) {
 
 // Buys a game. Sell-standard accounts cannot buy. Checks in order: blank
 // game name, blank seller, seller exists, game is for sale by that seller,
-// not already owned, enough credit. On success the price moves from buyer
+// not already owned, enough credit, seller stays within $999,999.00.
+// On success the price moves from buyer
 // to seller, the game joins the buyer's collection and a 04 line is written.
 void Game_Transactions::buy(const std::string& user) {
     if (session.get_current_user().get_user_type() == "SS") {
@@ -60,6 +61,10 @@ void Game_Transactions::buy(const std::string& user) {
             }
             if (buyer.get_total_credit() < listed.get_price()) {
                 std::cout << "ERROR: Insufficient credit to complete purchase.\n";
+                return;
+            }
+            if (session.find_user(seller).get_total_credit() + listed.get_price() > User::MAX_CREDIT) {
+                std::cout << "ERROR: Credit cannot exceed $999,999.00.\n";
                 return;
             }
             session.adjust_credit(user, -listed.get_price());

@@ -45,4 +45,7 @@ public:
 
     // Adds a game to the named user's collection (also updates the logged-in copy).
     void add_game(const std::string& user, const std::string& game);
+
+    // Removes a game from the named user's collection (also updates the logged-in copy).
+    void remove_game(const std::string& user, const std::string& game);
 };

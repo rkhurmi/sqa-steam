@@ -55,31 +55,35 @@ std::vector<User> Readers::read_user_accounts() {
 }
 
 // Reads the available games file, grouping games by seller.
-// Line layout: game name (cols 0-18), seller (20-34), price (36-41).
+// Line layout (49 chars): game name (cols 0-25), seller (27-41), price (43-48).
+// Stops at the closing line: END with blank seller and price fields.
 std::map<std::string, std::vector<Game>> Readers::read_available_games() {
     std::map<std::string, std::vector<Game>> games;
     std::ifstream in(available_games_file_path);
     std::string line;
     while (std::getline(in, line)) {
         if (trim(line).empty()) continue;
-        std::string name = field(line, 0, 19);
-        std::string seller = field(line, 20, 15);
-        double price = parse_money(field(line, 36, 6));
+        std::string name = field(line, 0, 26);
+        std::string seller = field(line, 27, 15);
+        if (name == "END" && seller.empty()) break;
+        double price = parse_money(field(line, 43, 6));
         games[seller].push_back(Game(name, price, seller));
     }
     return games;
 }
 
 // Reads the game collection file, grouping games by owner.
-// Line layout: game name (cols 0-18), owner (20-34).
+// Line layout (42 chars): game name (cols 0-25), owner (27-41).
+// Stops at the closing line: END with a blank owner field.
 std::map<std::string, std::vector<Game>> Readers::read_game_collection() {
     std::map<std::string, std::vector<Game>> games;
     std::ifstream in(game_collection_file_path);
     std::string line;
     while (std::getline(in, line)) {
         if (trim(line).empty()) continue;
-        std::string name = field(line, 0, 19);
-        std::string buyer = field(line, 20, 15);
+        std::string name = field(line, 0, 26);
+        std::string buyer = field(line, 27, 15);
+        if (name == "END" && buyer.empty()) break;
         games[buyer].push_back(Game(name, 0.0, ""));
     }
     return games;

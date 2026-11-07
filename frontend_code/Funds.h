@@ -17,7 +17,7 @@ public:
     // Prompts for an amount and records it as credit added to `user`.
     void add_credit(const std::string& user);
 
-    // Admin only. Prompts for the buyer, seller and amount, then moves that
-    // credit from the seller to the buyer and records the refund.
+    // Admin only. Prompts for the buyer, seller, game and amount, moves that credit
+    // from the seller to the buyer, removes the game from the buyer and records it.
     void refund();
 };

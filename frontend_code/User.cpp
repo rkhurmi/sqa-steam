@@ -24,6 +24,16 @@ void User::add_game(const std::string& game) {
     game_collection.push_back(Game(game, 0.0, ""));
 }
 
+// Removes the first game with this name from the user's collection, if owned.
+void User::remove_game(const std::string& game) {
+    for (size_t i = 0; i < game_collection.size(); ++i) {
+        if (game_collection[i].get_name() == game) {
+            game_collection.erase(game_collection.begin() + static_cast<long>(i));
+            return;
+        }
+    }
+}
+
 // Getters and setters.
 std::string User::get_username() const { return username; }
 std::string User::get_user_type() const { return user_type; }

@@ -105,3 +105,14 @@ void Session::add_game(const std::string& user, const std::string& game) {
         }
     }
 }
+
+// refund: removes the refunded game from the buyer's collection.
+void Session::remove_game(const std::string& user, const std::string& game) {
+    for (User& u : all_users) {
+        if (u.get_username() == user) {
+            u.remove_game(game);
+            if (logged_in && current_user.get_username() == user) current_user = u;
+            return;
+        }
+    }
+}

@@ -23,6 +23,12 @@ public:
     // Adds a game with the given name to this user's collection.
     void add_game(const std::string& game);
 
+    // Removes a game with the given name from this user's collection (used by refund).
+    void remove_game(const std::string& game);
+
+    // The most credit any account may hold.
+    static constexpr double MAX_CREDIT = 999999.00;
+
     // Getters for the username and type code.
     std::string get_username() const;
     std::string get_user_type() const;

@@ -11,7 +11,8 @@ Funds::Funds(Session& session, Transaction_Writer& transaction)
 
 // Asks for an amount (a positive number). An admin also gives the account
 // to credit; anyone else credits their own. At most $1000.00 can be added
-// to one account per session. Writes a 06 line with the new credit.
+// to one account per session, and no account may hold more than $999,999.00.
+// Writes a 06 line with the new credit.
 void Funds::add_credit(const std::string& user) {
     static const double SESSION_LIMIT = 1000.00;
     std::string amount_text;
@@ -44,6 +45,10 @@ void Funds::add_credit(const std::string& user) {
         std::cout << "ERROR: Cannot add more than $1000.00 in credit per session.\n";
         return;
     }
+    if (target_user.get_total_credit() + amount > User::MAX_CREDIT) {
+        std::cout << "ERROR: Credit cannot exceed $999,999.00.\n";
+        return;
+    }
 
     session.add_credit(target, amount);
     User updated = session.find_user(target);
@@ -52,9 +57,11 @@ void Funds::add_credit(const std::string& user) {
               << " credit to " << target << ".\n";
 }
 
-// Each field is checked right after it is entered, so an error ends the command
-// before the next prompt: buyer (blank / not found), seller (blank / not found),
-// then the amount format.
+// Admin only. Each field is checked right after it is entered, so an error ends
+// the command before the next prompt: buyer (blank / not found), seller (blank /
+// not found), game (blank / not owned by the buyer), then the amount format.
+// The buyer's credit can't pass $999,999.00. On success the credit moves from
+// seller to buyer, the game leaves the buyer's collection and a 05 line is written.
 void Funds::refund() {
     if (!session.is_admin()) {
         std::cout << "ERROR: Permission denied, refund requires admin privileges.\n";
@@ -82,6 +89,17 @@ void Funds::refund() {
         std::cout << "ERROR: Seller not found.\n";
         return;
     }
+    std::cout << "Enter game name:\n";
+    std::string game;
+    std::getline(std::cin, game);
+    if (game.empty()) {
+        std::cout << "ERROR: Game name cannot be blank.\n";
+        return;
+    }
+    if (!session.find_user(buyer).owns_game(game)) {
+        std::cout << "ERROR: Buyer does not own this game.\n";
+        return;
+    }
     std::cout << "Enter refund amount:\n";
     std::string amount_text;
     std::getline(std::cin, amount_text);
@@ -93,8 +111,14 @@ void Funds::refund() {
         return;
     }
 
+    if (session.find_user(buyer).get_total_credit() + amount > User::MAX_CREDIT) {
+        std::cout << "ERROR: Credit cannot exceed $999,999.00.\n";
+        return;
+    }
+
     session.adjust_credit(buyer, amount);
     session.adjust_credit(seller, -amount);
+    session.remove_game(buyer, game);
     transaction.record_refund(buyer, seller, amount);
     std::cout << "Refunded $" << std::fixed << std::setprecision(2) << amount
               << " from " << seller << " to " << buyer << ".\n";
