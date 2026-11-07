@@ -56,7 +56,11 @@ void process_transactions(const std::string& command, const std::string& usernam
     } else if (command == "create") {
         accounts.create_user();
     } else if (command == "delete") {
-        accounts.delete_user();
+        // Deleting a user also cancels every game they had for sale.
+        std::string deleted = accounts.delete_user();
+        if (!deleted.empty()) {
+            games.remove_seller_games(deleted);
+        }
     } else if (command == "list") {
         games.list_games();
     } else if (command == "listaccounts") {

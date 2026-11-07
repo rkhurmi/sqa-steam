@@ -32,7 +32,8 @@ void Funds::add_credit(const std::string& user) {
         std::cout << "ERROR: Username not found.\n";
         return;
     }
-    if (!session.is_admin() && target_user.get_credit_in_session() + amount > SESSION_LIMIT) {
+    // The $1000 limit is per account per session, whoever adds the credit (admin included).
+    if (target_user.get_credit_in_session() + amount > SESSION_LIMIT) {
         std::cout << "ERROR: Cannot add more than $1000.00 in credit per session.\n";
         return;
     }
