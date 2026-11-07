@@ -1,0 +1,12 @@
+login
+admuser1
+create
+newuser31
+buy-standard
+delete
+fullstd02
+addcredit
+25.50
+buystduser1
+listaccounts
+logout

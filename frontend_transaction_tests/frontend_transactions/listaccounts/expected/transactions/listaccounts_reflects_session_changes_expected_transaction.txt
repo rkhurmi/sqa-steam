@@ -1,0 +1,4 @@
+01 newuser31       BS 000000.00
+02 fullstd02       FS 000000.00
+06 buystduser1     BS 000025.50
+00 admuser1        AA 000000.00

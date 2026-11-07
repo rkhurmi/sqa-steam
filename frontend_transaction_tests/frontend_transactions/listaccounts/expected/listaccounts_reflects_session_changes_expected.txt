@@ -1,0 +1,17 @@
+Enter username:
+Login successful, welcome admuser1 (admin).
+Enter new username:
+Enter user type (admin, full-standard, buy-standard, sell-standard):
+User newuser31 created.
+Enter username to delete:
+User fullstd02 deleted.
+Enter amount to add:
+Enter username to credit:
+Added $25.50 credit to buystduser1.
+admuser1 AA 0.00
+fullstduser1 FS 0.00
+buystduser1 BS 25.50
+sellstduser1 SS 0.00
+admidle1 AA 0.00
+newuser31 BS 0.00
+Logout successful.

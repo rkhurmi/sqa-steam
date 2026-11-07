@@ -1,4 +1,4 @@
-Comparison run: Sat  7 Nov 2026 11:14:40 EST
+Comparison run: Sat  7 Nov 2026 11:26:13 EST
 
 PASS     addCredit/addcredit_admin_over_1000 [terminal]
 PASS     addCredit/addcredit_admin_successful [terminal]
@@ -68,6 +68,16 @@ PASS     delete/delete_username_empty [transaction]
 PASS     delete/delete_username_invalid [transaction]
 PASS     list/list_current_sales [terminal]
 PASS     list/list_current_sales [transaction]
+PASS     listaccounts/listaccounts_admin_successful [terminal]
+PASS     listaccounts/listaccounts_bs_rejected [terminal]
+PASS     listaccounts/listaccounts_fs_rejected [terminal]
+PASS     listaccounts/listaccounts_reflects_session_changes [terminal]
+PASS     listaccounts/listaccounts_ss_rejected [terminal]
+PASS     listaccounts/listaccounts_admin_successful [transaction]
+PASS     listaccounts/listaccounts_bs_rejected [transaction]
+PASS     listaccounts/listaccounts_fs_rejected [transaction]
+PASS     listaccounts/listaccounts_reflects_session_changes [transaction]
+PASS     listaccounts/listaccounts_ss_rejected [transaction]
 PASS     login/login_aa [terminal]
 PASS     login/login_admin_all [terminal]
 PASS     login/login_bs [terminal]
@@ -160,4 +170,4 @@ PASS     sell/sell_successful_fs [transaction]
 PASS     sell/sell_successful_ss [transaction]
 
 ================ SUMMARY ================
-Total: 158   Passed: 158   Failed: 0   Missing: 0
+Total: 168   Passed: 168   Failed: 0   Missing: 0
