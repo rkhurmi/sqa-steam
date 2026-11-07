@@ -13,6 +13,7 @@ private:
     bool logged_in;
 
 public:
+    // Starts with nobody logged in; all_users comes from the accounts file.
     Session(Transaction_Writer& transaction, const std::vector<User>& all_users = {});
 
     // Logs in the named user if they exist.
@@ -24,12 +25,16 @@ public:
     // Returns a copy of the named user, or a User with an empty username if not found.
     User find_user(const std::string& user);
 
-    // Accessors needed by Account_Management.
+    // Returns true while a user is logged in.
     bool is_logged_in() const;
 
     // Returns true if a user is logged in and is an admin ("AA").
     bool is_admin() const;
+
+    // Returns a copy of the logged-in user (an empty User when nobody is logged in).
     User get_current_user() const;
+
+    // Returns the master list of accounts, so create and delete can change it.
     std::vector<User>& get_all_users();
 
     // Adds `amount` to the named user's total credit and session credit (also updates the logged-in copy).

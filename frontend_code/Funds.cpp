@@ -1,10 +1,17 @@
+// Funds.cpp
+// Credit commands: addcredit (any user) and refund (admin only).
+
 #include "Funds.h"
 #include <iomanip>
 #include <iostream>
 
+// Shares the session (for the user list) and the transaction writer.
 Funds::Funds(Session& session, Transaction_Writer& transaction)
     : transaction(transaction), session(session) {}
 
+// Asks for an amount (a positive number). An admin also gives the account
+// to credit; anyone else credits their own. At most $1000.00 can be added
+// to one account per session. Writes a 06 line with the new credit.
 void Funds::add_credit(const std::string& user) {
     static const double SESSION_LIMIT = 1000.00;
     std::string amount_text;

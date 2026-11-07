@@ -1,10 +1,17 @@
+// User.cpp
+// One user account: username, type code (AA, FS, BS, SS), credit,
+// and the games the user owns.
+
 #include "User.h"
 
+// Creates an account. credit_in_session tracks credit added this session,
+// for the $1000-per-session addcredit limit.
 User::User(const std::string& username, const std::string& user_type,
            double total_credit, double credit_in_session)
     : username(username), user_type(user_type),
       total_credit(total_credit), credit_in_session(credit_in_session) {}
 
+// Returns true if the user already owns a game with this name.
 bool User::owns_game(const std::string& game) const {
     for (const Game& owned_game : game_collection) {
         if (owned_game.get_name() == game) return true;
@@ -12,10 +19,12 @@ bool User::owns_game(const std::string& game) const {
     return false;
 }
 
+// Adds a bought game to the user's collection.
 void User::add_game(const std::string& game) {
     game_collection.push_back(Game(game, 0.0, ""));
 }
 
+// Getters and setters.
 std::string User::get_username() const { return username; }
 std::string User::get_user_type() const { return user_type; }
 
@@ -37,6 +46,8 @@ std::string User::get_type_name() const {
     return user_type;
 }
 
+// Converts a type name typed at the create prompt ("admin", ...) to its
+// two-letter code; returns "" for anything else.
 std::string User::code_from_type_name(const std::string& name) {
     if (name == "admin") return "AA";
     if (name == "full-standard") return "FS";

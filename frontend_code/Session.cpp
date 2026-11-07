@@ -1,3 +1,8 @@
+// Session.cpp
+// Tracks who is logged in and holds every user account for the run.
+// all_users is the master list; current_user is a copy of the logged-in user,
+// so every change to a user updates both.
+
 #include "Session.h"
 #include <iostream>
 
@@ -10,9 +15,11 @@ static std::string type_name(const std::string& code) {
     return code;
 }
 
+// Starts with nobody logged in.
 Session::Session(Transaction_Writer& transaction, const std::vector<User>& all_users)
     : current_user(), all_users(all_users), transaction(transaction), logged_in(false) {}
 
+// Logs a user in. Rejects a second login, a blank username and an unknown username.
 void Session::login(const std::string& user) {
     if (logged_in) {
         std::cout << "ERROR: Already logged in, log out first.\n";
@@ -33,9 +40,11 @@ void Session::login(const std::string& user) {
               << " (" << type_name(found.get_user_type()) << ").\n";
 }
 
+// Logs the current user out and writes the 00 end-of-session line
+// with the user's credit as it stands now.
 void Session::logout(const std::string& user) {
     if (!logged_in || current_user.get_username() != user) {
-        std::cout << "Error: user is not logged in.\n";
+        std::cout << "ERROR: You must log in first.\n";
         return;
     }
     transaction.record_user_transaction("00", current_user.get_username(),
@@ -46,6 +55,8 @@ void Session::logout(const std::string& user) {
     std::cout << "Logout successful.\n";
 }
 
+// Returns a copy of the named user, or an empty User if not found
+// (callers check get_username().empty()).
 User Session::find_user(const std::string& user) {
     for (const User& u : all_users) {
         if (u.get_username() == user) return u;
@@ -53,11 +64,14 @@ User Session::find_user(const std::string& user) {
     return User();
 }
 
+// Getters. is_admin is true only while an admin is logged in.
 bool Session::is_logged_in() const { return logged_in; }
 bool Session::is_admin() const { return logged_in && current_user.get_user_type() == "AA"; }
 User Session::get_current_user() const { return current_user; }
 std::vector<User>& Session::get_all_users() { return all_users; }
 
+// addcredit: adds to the user's credit and to their credit added this
+// session (used for the $1000-per-session limit).
 void Session::add_credit(const std::string& user, double amount) {
     for (User& u : all_users) {
         if (u.get_username() == user) {
@@ -69,6 +83,8 @@ void Session::add_credit(const std::string& user, double amount) {
     }
 }
 
+// buy and refund: changes credit by `amount` (negative to take it away)
+// without counting toward the addcredit limit.
 void Session::adjust_credit(const std::string& user, double amount) {
     for (User& u : all_users) {
         if (u.get_username() == user) {
@@ -79,6 +95,7 @@ void Session::adjust_credit(const std::string& user, double amount) {
     }
 }
 
+// buy: adds a game to the user's collection.
 void Session::add_game(const std::string& user, const std::string& game) {
     for (User& u : all_users) {
         if (u.get_username() == user) {

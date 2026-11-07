@@ -1,3 +1,7 @@
+// Game_Transactions.cpp
+// Game commands: buy, sell, list and search. Holds the games for sale,
+// grouped by seller, plus games listed this session (pending_sales).
+
 #include "Game_Transactions.h"
 #include <algorithm>
 #include <cctype>
@@ -5,6 +9,7 @@
 #include <sstream>
 #include <iostream>
 
+// Starts with the games read from the available games file.
 Game_Transactions::Game_Transactions(Session& session, Transaction_Writer& transaction,
                                      const std::map<std::string, std::vector<Game>>& games_for_sale)
     : transaction(transaction), session(session), games_for_sale(games_for_sale) {}
@@ -16,6 +21,10 @@ static std::string dollars(double amount) {
     return oss.str();
 }
 
+// Buys a game. Sell-standard accounts cannot buy. Checks in order: blank
+// game name, blank seller, seller exists, game is for sale by that seller,
+// not already owned, enough credit. On success the price moves from buyer
+// to seller, the game joins the buyer's collection and a 04 line is written.
 void Game_Transactions::buy(const std::string& user) {
     if (session.get_current_user().get_user_type() == "SS") {
         std::cout << "ERROR: Permission denied, sell-standard accounts cannot buy games.\n";
@@ -117,10 +126,12 @@ void Game_Transactions::list_games() const {
     }
 }
 
+// Cancels every game a seller has for sale (used when their account is deleted).
 void Game_Transactions::remove_seller_games(const std::string& user) {
     games_for_sale.erase(user);
 }
 
+// True if a game with this name is for sale or was listed this session.
 bool Game_Transactions::is_name_taken(const std::string& game) const {
     for (const auto& entry : games_for_sale) {
         for (const Game& g : entry.second) {

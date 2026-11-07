@@ -76,7 +76,7 @@ void process_transactions(const std::string& command, const std::string& usernam
     } else if (command == "refund") {
         funds.refund();
     } else {
-        std::cout << "Error: unknown command.\n";
+        std::cout << "ERROR: Unknown command.\n";
     }
 }
 

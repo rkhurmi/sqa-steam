@@ -1,10 +1,16 @@
+// Account_Management.cpp
+// Admin-only account commands: create, delete and listaccounts.
+
 #include "Account_Management.h"
 #include <iomanip>
 #include <iostream>
 
+// Shares the session (for the user list) and the transaction writer.
 Account_Management::Account_Management(Session& session, Transaction_Writer& transaction)
     : session(session), transaction(transaction) {}
 
+// Admin only. Asks for a username (1-15 characters, not already taken),
+// then a user type. Adds the account with 0 credit and writes a 01 line.
 void Account_Management::create_user() {
     if (!session.is_admin()) {
         std::cout << "ERROR: Permission denied, create requires admin privileges.\n";
@@ -34,6 +40,9 @@ void Account_Management::create_user() {
     std::cout << "User " + user + " created.\n";
 }
 
+// Admin only. Asks for a username; it can't be blank, the logged-in user,
+// or unknown. Removes the account, writes a 02 line and returns the name so
+// the caller can cancel that user's games for sale. Returns "" on error.
 std::string Account_Management::delete_user() {
     if (!session.is_admin()) {
         std::cout << "ERROR: Permission denied, delete requires admin privileges.\n";
