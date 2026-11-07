@@ -44,6 +44,50 @@ void Funds::add_credit(const std::string& user) {
               << " credit to " << target << ".\n";
 }
 
-void Funds::refund(const std::string& buyer, const std::string& seller, double credit) {
-    transaction.record_refund(buyer, seller, credit);
+// Each field is checked right after it is entered, so an error ends the command
+// before the next prompt: buyer (blank / not found), seller (blank / not found),
+// then the amount format.
+void Funds::refund() {
+    if (!session.is_admin()) {
+        std::cout << "ERROR: Permission denied, refund requires admin privileges.\n";
+        return;
+    }
+    std::cout << "Enter buyer username:\n";
+    std::string buyer;
+    std::getline(std::cin, buyer);
+    if (buyer.empty()) {
+        std::cout << "ERROR: Buyer username cannot be blank.\n";
+        return;
+    }
+    if (session.find_user(buyer).get_username().empty()) {
+        std::cout << "ERROR: Buyer not found.\n";
+        return;
+    }
+    std::cout << "Enter seller username:\n";
+    std::string seller;
+    std::getline(std::cin, seller);
+    if (seller.empty()) {
+        std::cout << "ERROR: Seller username cannot be blank.\n";
+        return;
+    }
+    if (session.find_user(seller).get_username().empty()) {
+        std::cout << "ERROR: Seller not found.\n";
+        return;
+    }
+    std::cout << "Enter refund amount:\n";
+    std::string amount_text;
+    std::getline(std::cin, amount_text);
+    double amount = 0.0;
+    size_t parsed = 0;
+    try { amount = std::stod(amount_text, &parsed); } catch (...) { parsed = 0; }
+    if (parsed == 0 || parsed != amount_text.size() || amount <= 0.0) {
+        std::cout << "ERROR: Invalid amount format.\n";
+        return;
+    }
+
+    session.adjust_credit(buyer, amount);
+    session.adjust_credit(seller, -amount);
+    transaction.record_refund(buyer, seller, amount);
+    std::cout << "Refunded $" << std::fixed << std::setprecision(2) << amount
+              << " from " << seller << " to " << buyer << ".\n";
 }

@@ -3,5 +3,4 @@ admuser1
 refund
 buystduser1
 ghostseller1
-5.00
 logout

@@ -17,6 +17,7 @@ public:
     // Prompts for an amount and records it as credit added to `user`.
     void add_credit(const std::string& user);
 
-    // Records a refund of `credit` from `seller` to `buyer`.
-    void refund(const std::string& buyer, const std::string& seller, double credit);
+    // Admin only. Prompts for the buyer, seller and amount, then moves that
+    // credit from the seller to the buyer and records the refund.
+    void refund();
 };
