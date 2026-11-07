@@ -1,0 +1,8 @@
+Enter username:
+Login successful, welcome fullstduser1 (full-standard).
+Enter search query:
+User: fullstduser1 FS
+User: fullstd02 FS
+User: buystduser1 BS
+User: sellstduser1 SS
+Logout successful.

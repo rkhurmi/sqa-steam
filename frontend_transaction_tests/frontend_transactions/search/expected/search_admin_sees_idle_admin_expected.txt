@@ -1,0 +1,6 @@
+Enter username:
+Login successful, welcome admuser1 (admin).
+Enter search query:
+User: admuser1 AA
+User: admidle1 AA
+Logout successful.

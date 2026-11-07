@@ -1,0 +1,5 @@
+Enter username:
+Login successful, welcome fullstduser1 (full-standard).
+Enter search query:
+ERROR: Search query cannot be blank.
+Logout successful.

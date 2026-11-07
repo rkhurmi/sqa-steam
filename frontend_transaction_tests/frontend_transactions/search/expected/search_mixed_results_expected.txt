@@ -1,0 +1,7 @@
+Enter username:
+Login successful, welcome buystduser1 (buy-standard).
+Enter search query:
+Game: game01 admuser1 30.00
+Game: game02 admuser1 20.00
+Game: game03 admuser1 10.00
+Logout successful.

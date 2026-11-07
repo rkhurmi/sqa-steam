@@ -1,0 +1,5 @@
+Enter username:
+Login successful, welcome fullstduser1 (full-standard).
+Enter search query:
+Game: Stardew Valley sellstduser1 15.00
+Logout successful.
