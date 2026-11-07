@@ -1,6 +1,7 @@
 Enter username:
 Login successful, welcome admuser1 (admin).
-game01 30.0
-game02 20.0
-game03 10.0
+game01 30.00
+game02 20.00
+game03 10.00
+Stardew Valley 15.00
 Logout successful.

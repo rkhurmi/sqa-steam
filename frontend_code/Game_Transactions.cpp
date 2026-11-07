@@ -62,30 +62,55 @@ void Game_Transactions::buy(const std::string& user) {
     std::cout << "ERROR: Game not found.\n";
 }
 
+// Lists a game for sale. Buy-standard accounts cannot sell. The name must be
+// 1-26 characters and not already listed; the price must be a number no greater
+// than 999.99. Each field is checked right after it is entered. The game goes into
+// pending_sales, so it cannot be bought until the back end processes it tomorrow.
 void Game_Transactions::sell(const std::string& user) {
-    std::string game, price_text;
-    std::cout << "Game name: ";
-    std::getline(std::cin, game);
-    if (is_name_taken(game)) {
-        std::cout << "Error: game name is already taken.\n";
+    if (session.get_current_user().get_user_type() == "BS") {
+        std::cout << "ERROR: Permission denied, buy-standard accounts cannot sell games.\n";
         return;
     }
-    std::cout << "Price: ";
+    std::cout << "Enter game name:\n";
+    std::string game;
+    std::getline(std::cin, game);
+    if (game.empty()) {
+        std::cout << "ERROR: Game name cannot be blank.\n";
+        return;
+    }
+    if (game.size() > 26) {
+        std::cout << "ERROR: Game name must be between 1 and 26 characters.\n";
+        return;
+    }
+    if (is_name_taken(game)) {
+        std::cout << "ERROR: Game name already exists.\n";
+        return;
+    }
+    std::cout << "Enter price:\n";
+    std::string price_text;
     std::getline(std::cin, price_text);
     double price = 0.0;
-    try { price = std::stod(price_text); } catch (...) {
-        std::cout << "Error: invalid price.\n";
+    size_t parsed = 0;
+    try { price = std::stod(price_text, &parsed); } catch (...) { parsed = 0; }
+    if (parsed == 0 || parsed != price_text.size() || price < 0.0) {
+        std::cout << "ERROR: Invalid price format.\n";
         return;
     }
-    games_for_sale[user].push_back(Game(game, price, user));
+    if (price > 999.99 + 1e-9) {
+        std::cout << "ERROR: Price cannot exceed $999.99.\n";
+        return;
+    }
+    pending_sales.push_back(Game(game, price, user));
     transaction.record_sell(user, game, price);
+    std::cout << "Listed " + game + " for sale at $" + dollars(price) + ".\n";
 }
 
+// Prints each game available to buy today as "<name> <price>" (games listed
+// this session are not shown, since they cannot be bought until tomorrow).
 void Game_Transactions::list_games() const {
     for (const auto& entry : games_for_sale) {
         for (const Game& listed_game : entry.second) {
-            std::cout << listed_game.get_name() << " " << listed_game.get_seller() << " "
-                      << listed_game.get_price() << "\n";
+            std::cout << listed_game.get_name() << " " << dollars(listed_game.get_price()) << "\n";
         }
     }
 }
@@ -99,6 +124,9 @@ bool Game_Transactions::is_name_taken(const std::string& game) const {
         for (const Game& g : entry.second) {
             if (g.get_name() == game) return true;
         }
+    }
+    for (const Game& g : pending_sales) {
+        if (g.get_name() == game) return true;
     }
     return false;
 }
