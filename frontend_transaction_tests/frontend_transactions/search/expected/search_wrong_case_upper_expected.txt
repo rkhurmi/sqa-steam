@@ -1,0 +1,5 @@
+Enter username:
+Login successful, welcome buystduser1 (buy-standard).
+Enter search query:
+No results found.
+Logout successful.

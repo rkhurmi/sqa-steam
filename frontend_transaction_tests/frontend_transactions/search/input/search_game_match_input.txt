@@ -1,5 +1,5 @@
 login
 fullstduser1
 search
-stardew
+Stardew
 logout
