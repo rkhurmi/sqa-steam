@@ -1,0 +1,8 @@
+Enter username:
+Login successful, welcome admuser1 (admin).
+Enter username to delete:
+User sellstduser1 deleted.
+game01 30.00
+game02 20.00
+game03 10.00
+Logout successful.
