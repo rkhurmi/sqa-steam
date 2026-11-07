@@ -1,0 +1,5 @@
+Enter username:
+Login successful, welcome richbuyer1 (full-standard).
+Enter amount to add:
+ERROR: Credit cannot exceed $999,999.00.
+Logout successful.

@@ -1,0 +1,8 @@
+login
+fullstduser1
+addcredit
+50.00
+buy
+Gold Rush
+richvendor1
+logout

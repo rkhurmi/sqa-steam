@@ -13,5 +13,7 @@ fullstduser1 FS 0.00
 buystduser1 BS 25.50
 sellstduser1 SS 0.00
 admidle1 AA 0.00
+richbuyer1 FS 999500.00
+richvendor1 SS 999990.00
 newuser31 BS 0.00
 Logout successful.

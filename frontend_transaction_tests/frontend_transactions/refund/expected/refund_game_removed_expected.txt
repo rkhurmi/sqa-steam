@@ -1,0 +1,12 @@
+Enter username:
+Login successful, welcome admuser1 (admin).
+Enter buyer username:
+Enter seller username:
+Enter game name:
+Enter refund amount:
+Refunded $5.00 from sellstduser1 to buystduser1.
+Enter buyer username:
+Enter seller username:
+Enter game name:
+ERROR: Buyer does not own this game.
+Logout successful.

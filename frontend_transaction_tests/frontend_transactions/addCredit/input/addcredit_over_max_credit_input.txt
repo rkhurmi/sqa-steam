@@ -1,0 +1,5 @@
+login
+richbuyer1
+addcredit
+600.00
+logout

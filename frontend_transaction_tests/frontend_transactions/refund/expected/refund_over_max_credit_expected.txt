@@ -1,0 +1,8 @@
+Enter username:
+Login successful, welcome admuser1 (admin).
+Enter buyer username:
+Enter seller username:
+Enter game name:
+Enter refund amount:
+ERROR: Credit cannot exceed $999,999.00.
+Logout successful.

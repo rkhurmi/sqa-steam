@@ -1,4 +1,6 @@
-Stardew Valley      sellstduser1    015.00
-game01              admuser1        030.00
-game02              admuser1        020.00
-game03              admuser1        010.00
+Stardew Valley             sellstduser1    015.00
+game01                     admuser1        030.00
+game02                     admuser1        020.00
+game03                     admuser1        010.00
+Gold Rush                  richvendor1     020.00
+END                                              

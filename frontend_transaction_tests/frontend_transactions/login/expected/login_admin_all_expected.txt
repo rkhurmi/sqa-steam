@@ -7,6 +7,7 @@ Enter username to delete:
 User fullstd02 deleted.
 Enter buyer username:
 Enter seller username:
+Enter game name:
 Enter refund amount:
 Refunded $10.00 from sellstduser1 to buystduser1.
 Logout successful.
