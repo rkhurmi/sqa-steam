@@ -1,4 +1,5 @@
 # Builds the Front End into ./frontend
+# Command: make -> ./frontend data/users.txt data/games.txt data/collection.txt daily_transactions.txt
 
 
 CXX      = g++
