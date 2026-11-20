@@ -1,6 +1,3 @@
-from __future__ import annotations
-
-
 class GameCollectionFile:
     def __init__(self) -> None:
         self._entries: set[tuple[str, str]] = set()

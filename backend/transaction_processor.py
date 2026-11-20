@@ -1,6 +1,3 @@
-from __future__ import annotations
-
-
 from accounts_file import AccountsFile
 from available_games_file import AvailableGamesFile
 from error_logger import ErrorLogger

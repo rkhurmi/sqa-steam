@@ -1,6 +1,3 @@
-from __future__ import annotations
-
-
 class AccountsFile:
     def __init__(self) -> None:
         self._users: dict[str, tuple[str, int]] = {}

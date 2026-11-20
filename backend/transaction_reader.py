@@ -1,6 +1,3 @@
-from __future__ import annotations
-
-
 from error_logger import ErrorLogger
 from transaction import Transaction
 

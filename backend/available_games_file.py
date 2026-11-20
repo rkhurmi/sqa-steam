@@ -1,6 +1,3 @@
-from __future__ import annotations
-
-
 class AvailableGamesFile:
     def __init__(self) -> None:
         self._games: dict[str, tuple[str, int]] = {}
