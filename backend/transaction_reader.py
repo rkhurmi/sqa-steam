@@ -84,4 +84,55 @@ class TransactionReader:
         return transactions
 
     def parse_line(self, line: str) -> Transaction:
-        raise NotImplementedError
+        """
+        Turn one text line into a Transaction. Fields that the transaction
+        code does not use stay None.
+
+        Parameters:
+            line - one line of the transaction file
+        Returns the Transaction. Raises ValueError for an unknown code.
+        """
+        code = read_field(line, 0, CODE_WIDTH)
+        position = FIRST_FIELD_START
+
+        if code in (CODE_CREATE, CODE_DELETE, CODE_ADD_CREDIT, CODE_END_OF_SESSION):
+            # CC UUUUUUUUUUUUUUU TT CCCCCCCCC
+            username = read_field(line, position, USERNAME_WIDTH)
+            position += USERNAME_WIDTH + len(SEPARATOR)
+            user_type = read_field(line, position, USER_TYPE_WIDTH)
+            position += USER_TYPE_WIDTH + len(SEPARATOR)
+            credit_cents = money_to_cents(read_field(line, position, CREDIT_WIDTH))
+            return Transaction(code, username=username, user_type=user_type,
+                               credit_cents=credit_cents)
+
+        if code == CODE_REFUND:
+            # 05 buyer seller credit
+            buyer = read_field(line, position, USERNAME_WIDTH)
+            position += USERNAME_WIDTH + len(SEPARATOR)
+            seller = read_field(line, position, USERNAME_WIDTH)
+            position += USERNAME_WIDTH + len(SEPARATOR)
+            credit_cents = money_to_cents(read_field(line, position, CREDIT_WIDTH))
+            return Transaction(code, buyer=buyer, seller=seller, credit_cents=credit_cents)
+
+        if code == CODE_SELL:
+            # 03 game seller price
+            game_name = read_field(line, position, GAME_NAME_WIDTH)
+            position += GAME_NAME_WIDTH + len(SEPARATOR)
+            seller = read_field(line, position, USERNAME_WIDTH)
+            position += USERNAME_WIDTH + len(SEPARATOR)
+            price_cents = money_to_cents(read_field(line, position, PRICE_WIDTH))
+            return Transaction(code, game_name=game_name, seller=seller, price_cents=price_cents)
+
+        if code == CODE_BUY:
+            # 04 game seller buyer price
+            game_name = read_field(line, position, GAME_NAME_WIDTH)
+            position += GAME_NAME_WIDTH + len(SEPARATOR)
+            seller = read_field(line, position, USERNAME_WIDTH)
+            position += USERNAME_WIDTH + len(SEPARATOR)
+            buyer = read_field(line, position, USERNAME_WIDTH)
+            position += USERNAME_WIDTH + len(SEPARATOR)
+            price_cents = money_to_cents(read_field(line, position, PRICE_WIDTH))
+            return Transaction(code, game_name=game_name, seller=seller, buyer=buyer,
+                               price_cents=price_cents)
+
+        raise ValueError(f"unknown transaction code '{code}'")
