@@ -9,15 +9,16 @@
 #   reported as "ERROR: ..." on standard output and skipped. A missing or
 #   unreadable file prints an error and stops the program with exit code 1.
 #
-# INPUT FILES
-#   merged transaction file, old accounts file, old available games file,
-#   old game collection file
-# OUTPUT FILES
-#   new accounts file, new available games file, new game collection file
-#
 # HOW TO RUN
-#   python3 backend.py <transactions> <old_accounts> <old_games> \
+#   python backend.py <merged_transactions> <old_accounts> <old_games> \
 #       <old_collection> <new_accounts> <new_games> <new_collection>
+#
+# Example:
+# python3 backend.py ../new_frontend/daily_transactions.txt 
+# ../new_frontend/data/users.txt ../new_frontend/data/games.txt 
+# ../new_frontend/data/collection.txt ../new_frontend/data/new_users.txt
+# ../new_frontend/data/new_games.txt 
+# ../new_frontend/data/new_collection.txt
 # =============================================================================
 
 import sys
@@ -123,7 +124,7 @@ def main() -> None:
     """
     arguments = sys.argv[1:]
     if len(arguments) != EXPECTED_ARGUMENT_COUNT:
-        print("usage: python3 backend.py <transactions> <old_accounts> "
+        print("usage: python3 backend.py <merged_transactions> <old_accounts> "
               "<old_games> <old_collection> <new_accounts> <new_games> <new_collection>")
         sys.exit(1)
     BackEnd(*arguments).run()
