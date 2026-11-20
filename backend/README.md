@@ -13,6 +13,41 @@ python3 backend/backend.py <merged_transactions> <old_accounts> <old_games> \
 
 Takes exactly 7 arguments (3 inputs + the transaction file, then 3 output paths). Otherwise it prints a usage message and exits with code 1.
 
+Requires Python 3.10 or newer (the code uses `X | None` type hints).
+
+### Sample run
+
+`backend/data/` holds a ready-made set of sample inputs:
+
+| File | Contents |
+|---|---|
+| `daily_transactions.txt` | Merged transaction file for the day (includes a few deliberately invalid transactions) |
+| `users.txt` | Old accounts file |
+| `games.txt` | Old available games file |
+| `collection.txt` | Old game collection file |
+
+From the project root, write the new files to a separate folder so the sample inputs are not overwritten:
+
+```
+mkdir -p backend/output
+python3 backend/backend.py \
+    backend/data/daily_transactions.txt \
+    backend/data/users.txt \
+    backend/data/games.txt \
+    backend/data/collection.txt \
+    backend/output/new_users.txt \
+    backend/output/new_games.txt \
+    backend/output/new_collection.txt
+```
+
+Expected result:
+
+- Exit code 0, and three new files in `backend/output/`.
+- Constraint errors for the invalid transactions are printed to standard output as `ERROR: ...` lines.
+- `new_users.txt`: `newuser` is added (credit 50.00), `pooruser` is deleted, and balances reflect the buy, refund and add-credit transactions.
+- `new_games.txt`: `New Game` (seller `fulluser`, 19.99) is added.
+- `new_collection.txt`: `buyuser` now owns `Stardew Valley`.
+
 ### Files
 
 | File | Role |
