@@ -101,6 +101,13 @@ class TransactionProcessor:
             transaction - holds game_name, seller, buyer and price_cents
         Returns nothing.
         """
+        if self._collection.owns(transaction.buyer, transaction.game_name):
+            self._logger.constraint_error(
+                "AlreadyOwned",
+                f"buyer {transaction.buyer} already owns {transaction.game_name}",
+                transaction,
+            )
+            return
         if self._accounts.get_credit(transaction.buyer) < transaction.price_cents:
             self._logger.constraint_error(
                 "InsufficientCredit",
