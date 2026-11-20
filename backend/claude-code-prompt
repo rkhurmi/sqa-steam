@@ -1,0 +1,22 @@
+
+❯ <ide_opened_file>The user opened the file
+  /Users/rosiekhurmi/Desktop/School/sqa-steam/README.md in the IDE. This may or
+  may not be related to the current task.</ide_opened_file>
+
+❯ can you generate a short readme explaining the backend code
+
+  Ran 5 shell commands (ctrl+o to expand)
+
+⏺ I've written a short backend README at README.md. It was empty before.
+
+  It covers:
+  - how to run backend.py with its 7 arguments
+  - a table of what each backend file does
+  - the transaction codes 01–06 and the rule each one checks
+  - error handling: constraint errors are printed and skipped, and a bad file is
+    fatal and exits with code 1
+
+  I didn't run anything. The README comes from reading the code, and I haven't
+  confirmed the claim about code 00 (end of session). The reader defines the
+  constant and I assumed it's ignored. The processor has no handler for it, so
+  it falls through without effect.
