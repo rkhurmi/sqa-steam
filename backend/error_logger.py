@@ -9,10 +9,6 @@ FATAL_EXIT_CODE = 1
 class ErrorLogger:
     """Prints error messages to standard output in the form ERROR: <message>."""
 
-    def __init__(self) -> None:
-        """Create the logger. `field` is the attribute from the UML diagram."""
-        self.field: type = str
-
     def constraint_error(self, type: str, description: str, transaction: Transaction) -> None:
         """
         Report a transaction that broke a business rule. Processing continues.
