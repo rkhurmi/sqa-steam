@@ -12,6 +12,9 @@ CODE_BUY = "04"
 CODE_REFUND = "05"
 CODE_ADD_CREDIT = "06"
 
+# Highest credit a user may hold: $999,999.00, in cents.
+MAX_CREDIT_CENTS = 99_999_900
+
 
 class TransactionProcessor:
     """Applies transactions, one at a time, to the accounts, games and collection."""
@@ -75,6 +78,13 @@ class TransactionProcessor:
             transaction - holds the username to delete
         Returns nothing.
         """
+        if not self._accounts.exists(transaction.username):
+            self._logger.constraint_error(
+                "UnknownUser",
+                f"user {transaction.username} does not exist",
+                transaction,
+            )
+            return
         self._available_games.remove_games_by_seller(transaction.username)
         # ASSUMPTION: the deleted user's collection entries are removed too
         # (pending TA confirmation).
@@ -145,6 +155,21 @@ class TransactionProcessor:
             transaction - holds username and credit_cents
         Returns nothing.
         """
+        if not self._accounts.exists(transaction.username):
+            self._logger.constraint_error(
+                "UnknownUser",
+                f"user {transaction.username} does not exist",
+                transaction,
+            )
+            return
+        new_credit = self._accounts.get_credit(transaction.username) + transaction.credit_cents
+        if new_credit > MAX_CREDIT_CENTS:
+            self._logger.constraint_error(
+                "MaxCredit",
+                f"user {transaction.username} would go over the maximum credit",
+                transaction,
+            )
+            return
         self._accounts.change_credit(transaction.username, transaction.credit_cents)
 
     def load_files(self, accounts_path: str, games_path: str, collection_path: str) -> None:
