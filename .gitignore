@@ -9,3 +9,12 @@ new_frontend/frontend
 # test-run outputs: every run writes a new timestamped folder under actual/
 frontend_transaction_tests/actual/*
 !frontend_transaction_tests/actual/.gitkeep
+
+# Python / pytest generated files
+__pycache__/
+.pytest_cache/
+.coverage
+.DS_Store
+.venv/
+venv/
+.idea/
